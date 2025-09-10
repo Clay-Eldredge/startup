@@ -1,8 +1,8 @@
-# Your startup name here
+# Smash Talk
 
 [My Notes](notes.md)
 
-A brief description of the application here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Smash Talk is a companion tool for competitive players of Super Smash Bros. Ultimate. The primary feature will be note taking. Users can select a character to take notes on. To be better from just a normal note taking app, Smash Talk will allow users to add tags to their notes for organization and shareability. Users can search through all the notes for a specific character matchup that have been made public by other users. 
 
 
 > [!NOTE]
@@ -26,37 +26,32 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 ### Elevator pitch
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Smash players are some of the most dedicated competitive gamers out there. There is so much to learn about in the game, and players are always trying to keep track of their recently gained experience. SmashTalk will allow these players to take, post, and view notes made by others. Notes can be organized by character and move, making it easy for users to find exactly what they need. Smash players will love using SmashTalk as their note keeping companion.
 
 ### Design
 
-![Design image](placeholder.png)
+![Design image](design.png)
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-```mermaid
-sequenceDiagram
-    actor You
-    actor Website
-    You->>Website: Replace this with your design
-```
 
 ### Key features
 
-- Describe your key feature
-- Describe your key feature
-- Describe your key feature
+* posting notes that are organized by character
+* logging in with a start.gg account (tournament website that keeps tournament data) to be able to see your performance against different characters
+* upvoting / downvoting notes, so only the most relevant and community approved notes are shown first
+* sharing your current online score (smash uses a score rather than ranking for online, so comparing scores is helpful for seeing how you place amongst all players)
 
 ### Technologies
 
 I am going to use the required technologies in the following ways.
 
-- **HTML** - Description here
-- **CSS** - Description here
-- **React** - Description here
-- **Service** - Description here
-- **DB/Login** - Description here
-- **WebSocket** - Description here
+- **HTML** - The structure of my website. Text, images, buttons.
+- **CSS** - The styling of my website. I need it to look professional so people will actually use it, since my website requires a userbase to be functional. I'll probably have to seed it with notes anyways.
+- **React** - Dynamic front end stuff. This will handle stuff like the note feed on each character page.
+- **Service** - I'll use the discord api for logging in. Maybe the start.gg api if I have time, to add the ability to pull tournament results. 
+- **DB/Login** - I'll have a database for storing the notes that are posted, and for storing account information. 
+- **WebSocket** - I'll make the note feed (comments, upvotes, downvotes) update through a websocket, so you can see it update live.
 
 ## 🚀 AWS deliverable
 
