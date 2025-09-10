@@ -32,7 +32,7 @@ Smash players are some of the most dedicated competitive gamers out there. There
 
 ![Design image](design.png)
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+The core design includes the note feed, a display showing which character page you are viewing, and text for each note (text content, upvotes, downvotes, poster, date and time).
 
 
 ### Key features
@@ -49,7 +49,7 @@ I am going to use the required technologies in the following ways.
 - **HTML** - The structure of my website. Text, images, buttons.
 - **CSS** - The styling of my website. I need it to look professional so people will actually use it, since my website requires a userbase to be functional. I'll probably have to seed it with notes anyways.
 - **React** - Dynamic front end stuff. This will handle stuff like the note feed on each character page.
-- **Service** - I'll use the discord api for logging in. Maybe the start.gg api if I have time, to add the ability to pull tournament results. 
+- **Service** - I'll use the discord api do users can connect their discord account to their smash talk account. This will allow users to make it public, allowing message requests for practicing the character matchup. I might use the start.gg api if I have time, to add the ability to pull tournament results. 
 - **DB/Login** - I'll have a database for storing the notes that are posted, and for storing account information. 
 - **WebSocket** - I'll make the note feed (comments, upvotes, downvotes) update through a websocket, so you can see it update live.
 
