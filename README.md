@@ -26,7 +26,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 ### Elevator pitch
 
-Smash players are some of the most dedicated competitive gamers out there. There is so much to learn about in the game, and players are always trying to keep track of their recently gained experience. SmashTalk will allow these players to take, post, and view notes made by others. Notes can be organized by character and move, making it easy for users to find exactly what they need. Smash players will love using SmashTalk as their note keeping companion.
+Smash players are some of the most dedicated competitive gamers out there. There is so much to learn about in the game, and players are always trying to keep track of their recently gained experience. SmashTalk will allow these players to take, post, and view notes made by others. Notes can be organized by character and move, making it easy for users to find exactly what they need. On top of that, community building features like sharing your main character, tournament results, and socials for potential requests to practice will have smash players always using SmashTalk as their smash note keeping companion.
 
 ### Design
 
@@ -34,6 +34,9 @@ Smash players are some of the most dedicated competitive gamers out there. There
 
 The core design includes the note feed, a display showing which character page you are viewing, and text for each note (text content, upvotes, downvotes, poster, date and time).
 
+![Design image2](design2.png)
+
+This would be a profile page, which shows a few pieces of information (main character, discord link, win rate, and desired practice) and their recent posts.
 
 ### Key features
 
@@ -46,9 +49,9 @@ The core design includes the note feed, a display showing which character page y
 
 I am going to use the required technologies in the following ways.
 
-- **HTML** - The structure of my website. Text, images, buttons.
-- **CSS** - The styling of my website. I need it to look professional so people will actually use it, since my website requires a userbase to be functional. I'll probably have to seed it with notes anyways.
-- **React** - Dynamic front end stuff. This will handle stuff like the note feed on each character page.
+- **HTML** - The structure of my website. Text, images, buttons. Necessary for all pages (profile, character feeds).
+- **CSS** - The styling of my website. I don't think I'll have any animations, just static styling. I need it to look professional so people will actually use it, since my website requires a userbase to be functional. I'll probably have to seed it with notes anyways.
+- **React** - Dynamic front end stuff. This will handle stuff like the note feed on each character page. Also will be necessary for sorting and searching features.
 - **Service** - I'll use the discord api do users can connect their discord account to their smash talk account. This will allow users to make it public, allowing message requests for practicing the character matchup. I might use the start.gg api if I have time, to add the ability to pull tournament results. 
 - **DB/Login** - I'll have a database for storing the notes that are posted, and for storing account information. 
 - **WebSocket** - I'll make the note feed (comments, upvotes, downvotes) update through a websocket, so you can see it update live.
