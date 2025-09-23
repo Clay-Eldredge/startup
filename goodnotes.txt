@@ -1,0 +1,10 @@
+Responsive design:
+    block, flex, inline, 
+Grid design:
+    container, 
+
+index.html -> login screen
+feed.html -> social feed
+profile.html -> user profile
+character.html -> page for selecting a character page
+character/mario -> character pages

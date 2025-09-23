@@ -1,0 +1,48 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1cm;
+  border: 1px solid black;
+  background-color: rgb(194, 50, 50);
+}
+
+.header div {
+    float: right;
+}
+
+.header a {
+    padding: 5mm;
+    font-size: 25px;
+    color: white;
+}
+
+.logo {
+    padding: 7mm;
+    font-size: 30px;
+    color: white;
+}
+
+form {
+    border: 1px solid black;
+    width: 300px;
+}
+
+.login-div {
+    display: flex;
+    justify-content: center;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    background-color: rgb(194, 50, 50);
+    width: 100%;
+    text-align: center;
+}
+
+footer a {
+    padding: 5mm;
+    font-size: 15px;
+    color: white;
+}
