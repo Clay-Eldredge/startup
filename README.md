@@ -68,7 +68,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 - [ ] **HTML pages** - I did not complete this part of the deliverable.
 - [x] **Proper HTML element usage** - I used a header with a nav for my links between pages. I used a footer for my github link and name. I used body correctly. Same with main.
-- [ ] **Links** - I did not complete this part of the deliverable.
+- [x] **Links** - I did not complete this part of the deliverable.
 - [ ] **Text** - I did not complete this part of the deliverable.
 - [ ] **3rd party API placeholder** - I did not complete this part of the deliverable.
 - [ ] **Images** - I did not complete this part of the deliverable.

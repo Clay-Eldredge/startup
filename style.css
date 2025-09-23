@@ -46,3 +46,18 @@ footer a {
     font-size: 15px;
     color: white;
 }
+
+.character-div {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.feed-div {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid black;
+}
