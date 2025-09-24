@@ -66,15 +66,15 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **HTML pages** - I did not complete this part of the deliverable.
+- [x] **HTML pages** - index, feed, profile, character list pages are all structured
 - [x] **Proper HTML element usage** - I used a header with a nav for my links between pages. I used a footer for my github link and name. I used body correctly. Same with main.
-- [x] **Links** - I did not complete this part of the deliverable.
-- [ ] **Text** - I did not complete this part of the deliverable.
-- [ ] **3rd party API placeholder** - I did not complete this part of the deliverable.
-- [ ] **Images** - I did not complete this part of the deliverable.
-- [ ] **Login placeholder** - I did not complete this part of the deliverable.
-- [ ] **DB data placeholder** - I did not complete this part of the deliverable.
-- [ ] **WebSocket placeholder** - I did not complete this part of the deliverable.
+- [x] **Links** - My header contains links to all the pages.
+- [x] **Text** - There isn't much text in my app yet, other than instructions. Most is user generated. Text can be found on the feed page.
+- [x] **3rd party API placeholder** - The API will be on the feed page, where it displays the tournament data for that character.
+- [x] **Images** - There's an image in the header, and images on the feed and profile pages.
+- [x] **Login placeholder** - It can be found on the index page. The username will be displayed as the link to the profile page in the header.
+- [x] **DB data placeholder** - Database data will be shown in the feed (Post Contents). Posts made by users are saved and displayed.
+- [x] **WebSocket placeholder** - The posts on the feed have like buttons and like counters. These will update in real time using a websocket.
 
 ## 🚀 CSS deliverable
 
