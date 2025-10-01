@@ -81,9 +81,9 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
 - [x] **Header, footer, and main content body** - Header and footer have colored text, special font, and flex displays.
-- [ ] **Navigation elements** - The navs in the header are flexible, and styled to sit on the right side of the header unless the screen is too narrow. They are then centered and placed in a column.
-- [ ] **Responsive to window resizing** - The header is responsive to window resizing.
-- [ ] **Application elements** - I did not complete this part of the deliverable.
+- [x] **Navigation elements** - The navs in the header are flexible, and styled to sit on the right side of the header unless the screen is too narrow. They are then centered and placed in a column.
+- [x] **Responsive to window resizing** - The header is responsive to window resizing by changing to a column of links when the screen is narrow, and the footer doubles in padding.
+- [x] **Application elements** - The like buttons on the feed use bootstrap primary button styling (except they're red!). The feed is centered. 
 - [ ] **Application text content** - I did not complete this part of the deliverable.
 - [ ] **Application images** - I did not complete this part of the deliverable.
 
