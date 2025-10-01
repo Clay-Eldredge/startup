@@ -84,8 +84,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] **Navigation elements** - The navs in the header are flexible, and styled to sit on the right side of the header unless the screen is too narrow. They are then centered and placed in a column.
 - [x] **Responsive to window resizing** - The header is responsive to window resizing by changing to a column of links when the screen is narrow, and the footer doubles in padding.
 - [x] **Application elements** - The like buttons on the feed use bootstrap primary button styling (except they're red!). The feed is centered. 
-- [ ] **Application text content** - I did not complete this part of the deliverable.
-- [ ] **Application images** - I did not complete this part of the deliverable.
+- [x] **Application text content** - The font family is changed for all text. Application text (like posts) will be loaded into the feed list items (which are already centered)
+- [x] **Application images** - Character img at top of feed will resize for small screens. Image is centered.
 
 ## 🚀 React part 1: Routing deliverable
 

@@ -88,6 +88,12 @@ footer a {
     align-items: center;
 }
 
+.character-div img {
+    width: 100%;
+    height: auto;
+    max-width: 300px;
+}
+
 .feed-div {
     display: flex;
     justify-content: center;
