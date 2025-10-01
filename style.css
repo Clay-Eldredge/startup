@@ -53,24 +53,6 @@ nav.header {
     margin-left: 0.5rem;
 }
 
-@media (max-width: 768px) {
-  header {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  nav.header {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .logo {
-    font-size: 1.2rem;
-  }
-
-  footer
-}
-
 form {
     border: 1px solid black;
     width: 300px;
@@ -80,22 +62,6 @@ form {
     display: flex;
     justify-content: center;
 }
-
-/*
-footer {
-    position: fixed;
-    bottom: 0;
-    background-color: rgb(194, 50, 50);
-    width: 100%;
-    text-align: center;
-}
-
-footer a {
-    padding: 5mm;
-    font-size: 15px;
-    color: white;
-}
-*/
 
 footer {
   background-color: rgb(194, 50, 50);
@@ -128,4 +94,24 @@ footer a {
     flex-direction: column;
     align-items: center;
     border: 2px solid black;
+}
+
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav.header {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .logo {
+    font-size: 1.2rem;
+  }
+
+  footer {
+    padding: 2rem;
+  }
 }
