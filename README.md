@@ -90,10 +90,10 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 ## 🚀 React part 1: Routing deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
-
-- [ ] **Bundled using Vite** - I did not complete this part of the deliverable.
-- [ ] **Components** - I did not complete this part of the deliverable.
-- [ ] **Router** - I did not complete this part of the deliverable.
+(I forgot to update my readme last night, hope that's okay)
+- [x] **Bundled using Vite** - It is bundled using vite
+- [x] **Components** - All my components are now shown on a single page using React.
+- [x] **Router** - I replaced the multiple html pages with the react browser router.
 
 ## 🚀 React part 2: Reactivity deliverable
 
