@@ -1,6 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './app.css';
+//import './app.css';
 import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 import { Login } from './login/login';
 import { Feed } from './feed/feed';
@@ -13,20 +13,20 @@ export default function App() {
       <header>
             <div>
                 <img src="/Smash_Ball.png" ></img>
-                <NavLink className="logo" to="/index.html">SmashTalk</NavLink>
+                <NavLink className="logo" to="/">SmashTalk</NavLink>
             </div>
-            <nav class="header">
-                <a href="/feed.html">Feed</a>
-                <a href="/characters.html">Characters</a>
-                <a href="/profile.html">Profile (replace with username)</a>
+            <nav className="header">
+              <NavLink to="/feed">Feed</NavLink>
+              <NavLink to="/characters">Characters</NavLink>
+              <NavLink to="/profile">Profile (replace with username)</NavLink>
             </nav>
       </header>
 
       <Routes>
         <Route path='/' element={<Login />} exact />
-        <Route path='/play' element={<Play />} />
-        <Route path='/scores' element={<Scores />} />
-        <Route path='/about' element={<About />} />
+        <Route path='/characters' element={<Characters />} />
+        <Route path='/profile' element={<Profile />} />
+        <Route path='/feed' element={<Feed />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
 

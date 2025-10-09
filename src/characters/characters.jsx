@@ -1,5 +1,5 @@
 import React from 'react';
-import 'characters.css';
+import './characters.css';
 
 export function Characters() {
     return (
@@ -7,7 +7,7 @@ export function Characters() {
             <div class="character-grid">
                 <ul class="character-list">
                     <li class="character-list-item">
-                        <a class="character-list-button" href="feed.html">
+                        <a className='character-list-button' to='feed'>
                             <div>
                                 This will have a character image and name.
                             </div>
