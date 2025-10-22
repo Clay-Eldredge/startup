@@ -11,7 +11,7 @@ export function Characters() {
           {characters.map((char) => (
             <li key={char} className="character-list-item">
               <Link className="character-list-button" to={`/feed/${char}`}>
-                <img src={`/${char}.png`} alt={char} className="character-img" />
+                <img src={`/Characters/Cards/${char}.png`} alt={char} className="character-img" />
                 <p>{char}</p>
               </Link>
             </li>

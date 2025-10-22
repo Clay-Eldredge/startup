@@ -29,9 +29,13 @@
 
 /* Individual character card */
 .characters-page .character-list-item {
+  position: relative; 
+  width: 100%;
+  aspect-ratio: 1 / 1; 
+  border-radius: 1rem;
+  overflow: hidden;
   background: linear-gradient(145deg, #3a3a3a, #2d2d2d);
   border: 1px solid #444;
-  border-radius: 1rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
@@ -44,32 +48,32 @@
 
 /* Link inside card */
 .characters-page .character-list-button {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: #eee;
-  text-decoration: none;
-  padding: 1rem;
+  display: block;
+  width: 100%;
   height: 100%;
+  text-decoration: none;
+  color: #eee;
+  position: relative; 
 }
 
-.characters-page .character-list-button:hover {
-  color: rgb(194, 50, 50); 
-}
-
-/* Character image */
+/* Character image fills the card */
 .characters-page .character-img {
-  width: 80px;
-  height: 80px;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  border-radius: 0.5rem;
-  margin-bottom: 0.5rem;
+  display: block;
 }
 
-/* Character name */
+/* Character name overlay */
 .characters-page .character-list-button p {
-  margin: 0;
-  font-weight: 600;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
   text-align: center;
-  font-size: 0.95rem;
+  margin: 0;
+  padding: 0.5rem 0;
+  background: rgba(0, 0, 0, 0.5);
+  font-weight: 600;
+  font-size: 1rem;
+  color: #f0f0f0;
 }
