@@ -9,12 +9,28 @@ export function Feed() {
       username: "Clay",
       content: "I hate playing against [Bayonetta]",
       timestamp: "2025-10-06 09:30 AM",
+      tags: ["Bayonetta"],
     },
     {
       id: 2,
       username: "Clay's Mom",
       content: "Clay, get off your phone.",
       timestamp: "2025-10-06 09:31 AM",
+      tags: [],
+    },
+    {
+      id: 3,
+      username: "Clay",
+      content: "[Mario] can use [uair] to combo off the top blast zone.",
+      timestamp: "2025-10-06 09:31 AM",
+      tags: ["Mario", "Up Air"],
+    },
+    {
+      id: 4,
+      username: "Clay",
+      content: "[Mario] is at least a top 10 character.",
+      timestamp: "2025-10-06 09:31 AM",
+      tags: ["Mario"],
     },
   ];
 
@@ -22,6 +38,44 @@ export function Feed() {
   const [postText, setPostText] = React.useState("");
   const [showSuggestions, setShowSuggestions] = React.useState(false);
   const [filteredCharacters, setFilteredCharacters] = React.useState([]);
+  const [selectedCharacter, setSelectedCharacter] = React.useState("");
+  const [selectedMove, setSelectedMove] = React.useState("");
+
+  // 🎯 Action tag list (move names)
+  const actionTags = [
+    "Back Air",
+    "Neutral Air",
+    "Up Air",
+    "Down Air",
+    "Forward Air",
+    "Neutral Special",
+    "Side Special",
+    "Up Special",
+    "Down Special",
+    "Grab",
+    "Dash Attack",
+    "Forward Smash",
+    "Up Smash",
+    "Down Smash",
+  ];
+
+  // 🔤 Aliases / shorthand normalization
+  const tagAliases = {
+    bair: "Back Air",
+    nair: "Neutral Air",
+    uair: "Up Air",
+    dair: "Down Air",
+    fair: "Forward Air",
+    usmash: "Up Smash",
+    dsmash: "Down Smash",
+    fsmash: "Forward Smash",
+    nb: "Neutral Special",
+    sb: "Side Special",
+    ub: "Up Special",
+    db: "Down Special",
+    grab: "Grab",
+    dash: "Dash Attack",
+  };
 
   const handleInputChange = (e) => {
     const value = e.target.value;
@@ -46,14 +100,23 @@ export function Feed() {
     setShowSuggestions(false);
   };
 
+  const normalizeTag = (raw) => {
+    const key = raw.toLowerCase().trim();
+    return tagAliases[key] || raw.trim();
+  };
+
   const handlePost = () => {
     if (!postText.trim()) return;
 
+    const tagMatches = [...postText.matchAll(/\[([^\]]+)\]/g)];
+    const parsedTags = tagMatches.map(match => normalizeTag(match[1]));
+
     const newPost = {
       id: posts.length + 1,
-      username: "Clay", // make this dynamic later
+      username: "Clay",
       content: postText.trim(),
       timestamp: new Date().toLocaleString(),
+      tags: parsedTags,
     };
 
     setPosts([newPost, ...posts]);
@@ -62,37 +125,58 @@ export function Feed() {
   };
 
   function parsePostContent(content) {
-      const parts = [];
-      const regex = /\[([^\]]+)\]/g;
-      let lastIndex = 0;
-      let match;
-
-      while ((match = regex.exec(content)) !== null) {
-        if (match.index > lastIndex) {
-          parts.push(content.slice(lastIndex, match.index));
-        }
-
-        const charName = match[1];
-        parts.push(
-          <a
-            key={match.index}
-            href={`/characters/${charName}`}
-            className="character-link"
-          >
-            {charName}
-          </a>
-        );
-
-        lastIndex = regex.lastIndex;
+    const parts = [];
+    const regex = /\[([^\]]+)\]/g;
+    let lastIndex = 0;
+    let match;
+    
+    while ((match = regex.exec(content)) !== null) {
+      if (match.index > lastIndex) {
+        parts.push(content.slice(lastIndex, match.index));
       }
-
-      if (lastIndex < content.length) {
-        parts.push(content.slice(lastIndex));
-      }
-
-      return parts;
+    
+      const normalized = normalizeTag(match[1]);
+    
+      parts.push(
+        <span
+          key={match.index}
+          className="tag-span"
+          onMouseEnter={(e) => {
+            // Example hover action:
+            // show tooltip or highlight
+            e.currentTarget.classList.add("hovered");
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.classList.remove("hovered");
+          }}
+          title={`Tag: ${normalized}`} // optional tooltip text
+        >
+          {normalized}
+        </span>
+      );
+    
+      lastIndex = regex.lastIndex;
     }
+  
+    if (lastIndex < content.length) {
+      parts.push(content.slice(lastIndex));
+    }
+  
+    return parts;
+  }
 
+
+  const visiblePosts = posts.filter(post => {
+    const matchesCharacter = selectedCharacter
+      ? post.tags.includes(selectedCharacter)
+      : true;
+
+    const matchesMove = selectedMove
+      ? post.tags.includes(selectedMove)
+      : true;
+
+    return matchesCharacter && matchesMove;
+  });
 
   return (
     <main>
@@ -103,49 +187,74 @@ export function Feed() {
         </p>
       </div>
 
-      <div className="create-post-div">
-          <p>
-            Post a note with tips for the Mario matchup! Type '[' to add one or
-            more tags. (Example: '[Pikachu][Bair]')
-          </p>
-            
-          <div className="input-wrapper">
-            <textarea
-              value={postText}
-              onChange={handleInputChange}
-              placeholder="Create a post..."
-              rows={4} // taller input
-            />
-            {showSuggestions && (
-              <div className="autocomplete-box">
-                {filteredCharacters.length > 0 ? (
-                  filteredCharacters.map((c) => (
-                    <div
-                      key={c}
-                      className="suggestion-item"
-                      onClick={() => handleSelect(c)}
-                    >
-                      {c}
-                    </div>
-                  ))
-                ) : (
-                  <div className="no-results">No matches found</div>
-                )}
-              </div>
-            )}
-          </div>
-        
-          <div className="post-btn-wrapper">
-            <button className="btn btn-primary post-btn" onClick={handlePost}>
-              Post
-            </button>
-          </div>
-        </div>
+      <div className="filter-bar">
+        <label htmlFor="characterFilter">Character:</label>
+        <select
+          id="characterFilter"
+          value={selectedCharacter}
+          onChange={(e) => setSelectedCharacter(e.target.value)}
+        >
+          <option value="">All</option>
+          {characters.map((char) => (
+            <option key={char} value={char}>{char}</option>
+          ))}
+        </select>
 
+        <label htmlFor="moveFilter" style={{ marginLeft: "1rem" }}>
+          Move:
+        </label>
+        <select
+          id="moveFilter"
+          value={selectedMove}
+          onChange={(e) => setSelectedMove(e.target.value)}
+        >
+          <option value="">All</option>
+          {actionTags.map((move) => (
+            <option key={move} value={move}>{move}</option>
+          ))}
+        </select>
+      </div>
+
+      <div className="create-post-div">
+        <p>
+          Post a note with tips for the Mario matchup! Type '[' to add tags.
+          Example: '[Mario][Bair]'
+        </p>
+        <div className="input-wrapper">
+          <textarea
+            value={postText}
+            onChange={handleInputChange}
+            placeholder="Create a post..."
+            rows={4}
+          />
+          {showSuggestions && (
+            <div className="autocomplete-box">
+              {filteredCharacters.length > 0 ? (
+                filteredCharacters.map((c) => (
+                  <div
+                    key={c}
+                    className="suggestion-item"
+                    onClick={() => handleSelect(c)}
+                  >
+                    {c}
+                  </div>
+                ))
+              ) : (
+                <div className="no-results">No matches found</div>
+              )}
+            </div>
+          )}
+        </div>
+        <div className="post-btn-wrapper">
+          <button className="btn btn-primary post-btn" onClick={handlePost}>
+            Post
+          </button>
+        </div>
+      </div>
 
       <div className="feed-div">
         <ul className="feed-ul">
-          {posts.map((post) => (
+          {visiblePosts.map((post) => (
             <li key={post.id} className="post">
               <div className="post-user-div">
                 <p>{post.username}</p>

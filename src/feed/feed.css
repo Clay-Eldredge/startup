@@ -199,6 +199,66 @@
   color: #555;
 }
 
+.filter-bar label {
+  margin-right: 0.5rem;
+  font-weight: bold;
+  color: #ddd;
+}
+
+.filter-bar {
+  margin: 1rem auto;
+  text-align: center;
+  color: #eee;
+}
+
+.filter-bar select {
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  border: none;
+  background-color: #222;
+  color: #fff;
+  margin-left: 0.3rem;
+}
+
+.tag-span {
+  color: rgb(194, 50, 50);
+  font-weight: 600;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+/* Slight color glow or underline when hovered */
+.tag-span.hovered {
+  color: #ff6b6b;
+  text-decoration: underline;
+}
+
+/* Optional tooltip (using the title attribute, browser default) */
+
+/* OR you can make your own tooltip pop-up like this */
+.tag-span::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #333;
+  color: white;
+  padding: 0.4rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  white-space: nowrap;
+}
+
+.tag-span:hover::after {
+  opacity: 1;
+}
+
+
 /* Responsive adjustments for mobile */
 @media (max-width: 768px) {
   .feed-ul,
