@@ -1,0 +1,75 @@
+/* Wrapper for the Characters page */
+.characters-page {
+  background-color: #2d2d2d;
+  color: #f0f0f0;
+  min-height: 100vh;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+/* Grid container */
+.characters-page .character-grid {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Grid of character cards */
+.characters-page .character-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 1000px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Individual character card */
+.characters-page .character-list-item {
+  background: linear-gradient(145deg, #3a3a3a, #2d2d2d);
+  border: 1px solid #444;
+  border-radius: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.characters-page .character-list-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+  border-color: #666;
+}
+
+/* Link inside card */
+.characters-page .character-list-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #eee;
+  text-decoration: none;
+  padding: 1rem;
+  height: 100%;
+}
+
+.characters-page .character-list-button:hover {
+  color: rgb(194, 50, 50); 
+}
+
+/* Character image */
+.characters-page .character-img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Character name */
+.characters-page .character-list-button p {
+  margin: 0;
+  font-weight: 600;
+  text-align: center;
+  font-size: 0.95rem;
+}

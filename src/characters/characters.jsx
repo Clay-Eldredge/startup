@@ -1,34 +1,23 @@
-import React from 'react';
-import './characters.css';
+import React from "react";
+import { Link } from "react-router-dom";
+import "./characters.css";
+import { characters } from "./characterList";
 
 export function Characters() {
-    return (
-      <main>
-            <div className="character-grid">
-                <ul className="character-list">
-                    <li className="character-list-item">
-                        <a className='character-list-button' to='feed'>
-                            <div>
-                                This will have a character image and name.
-                            </div>
-                        </a>
-                    </li>
-                    <li className="character-list-item">
-                        <a className="character-list-button" href="feed.html">
-                            <div>
-                                Same with this one
-                            </div>
-                        </a>
-                    </li>
-                    <li className="character-list-item">
-                        <a className="character-list-button" href="feed.html">
-                            <div>
-                                They will be loaded in by the javascript? There should be almost 90 of these.
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </main>
-    );
+  return (
+    <main className="characters-page">
+      <div className="character-grid">
+        <ul className="character-list">
+          {characters.map((char) => (
+            <li key={char} className="character-list-item">
+              <Link className="character-list-button" to={`/feed/${char}`}>
+                <img src={`/${char}.png`} alt={char} className="character-img" />
+                <p>{char}</p>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </main>
+  );
 }
