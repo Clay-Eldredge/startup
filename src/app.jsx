@@ -6,8 +6,10 @@ import { Login } from './login/login';
 import { Feed } from './feed/feed';
 import { Characters } from './characters/characters';
 import { Profile } from './profile/profile';
+import { useLocalStorage } from './useLocalStorage';
 
 export default function App() {
+  const [username, setUsername] = useLocalStorage("username", "")
   return (
     <BrowserRouter>
       <header>
@@ -18,7 +20,7 @@ export default function App() {
             <nav className="header">
               <NavLink to="/feed">Feed</NavLink>
               <NavLink to="/characters">Characters</NavLink>
-              <NavLink to="/profile">Profile (replace with username)</NavLink>
+              <NavLink to="/profile"> {username ? username : "Profile"} </NavLink>
             </nav>
       </header>
 

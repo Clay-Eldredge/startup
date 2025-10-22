@@ -4,7 +4,7 @@ import './login.css';
 export function Login() {
     return (
       <main>
-            <div class="login-div">
+            <div className="login-div">
                 <form>
                     <fieldset>
                         <legend>Login (this will use a database)</legend>

@@ -1,10 +1,19 @@
-Responsive design:
-    block, flex, inline, 
-Grid design:
-    container, 
+/characters
+- Needs to load nav links for all 89 characters
+    - Should have nav link, take user to feed, pass through character as parameter
+    - Image of character
 
-index.html -> login screen
-feed.html -> social feed
-profile.html -> user profile
-character.html -> page for selecting a character page
-character/mario -> character pages
+/feed
+- Needs to load all posts related to selected character
+    - Post should have
+        - Username
+        - Date & time
+        - Text content
+    - Browser should be able to parse post texts and assign tags ---OR--- just straight up pass tags as a separate paramter
+- Needs to mimic posting functionality
+
+/login
+- Functionality can probably wait until login assignment
+
+/profile
+- Needs to load user data
