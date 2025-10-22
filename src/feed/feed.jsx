@@ -64,15 +64,48 @@ export function Feed() {
 
     const newPost = {
       id: posts.length + 1,
-      username: "Clay", // you can make this dynamic later
+      username: "Clay", // make this dynamic later
       content: postText.trim(),
       timestamp: new Date().toLocaleString(),
     };
 
-    setPosts([newPost, ...posts]); // new post at top
+    setPosts([newPost, ...posts]);
     setPostText("");
     setShowSuggestions(false);
   };
+
+  function parsePostContent(content) {
+      const parts = [];
+      const regex = /\[([^\]]+)\]/g;
+      let lastIndex = 0;
+      let match;
+
+      while ((match = regex.exec(content)) !== null) {
+        if (match.index > lastIndex) {
+          parts.push(content.slice(lastIndex, match.index));
+        }
+
+        const charName = match[1];
+        parts.push(
+          <a
+            key={match.index}
+            href={`/characters/${charName}`}
+            className="character-link"
+          >
+            {charName}
+          </a>
+        );
+
+        lastIndex = regex.lastIndex;
+      }
+
+      if (lastIndex < content.length) {
+        parts.push(content.slice(lastIndex));
+      }
+
+      return parts;
+    }
+
 
   return (
     <main>
@@ -131,7 +164,7 @@ export function Feed() {
                 <p>{post.username}</p>
               </div>
               <div className="post-contents-div">
-                <p>{post.content}</p>
+                <p>{parsePostContent(post.content)}</p>
               </div>
               <div className="post-footer-div">
                 <button className="btn btn-primary">LIKE</button>

@@ -186,6 +186,17 @@
   color: #555;
 }
 
+.character-link {
+  color: rgb(194, 50, 50);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.character-link:hover {
+  text-decoration: underline;
+  color: rgb(165, 40, 40);
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .feed-ul {
@@ -204,3 +215,4 @@
     justify-content: center;
   }
 }
+
