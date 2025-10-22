@@ -84,35 +84,36 @@
 
 /* Post creation area */
 .create-post-div {
-  margin-top: 2rem;
+  margin: 2rem auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
   text-align: center;
-  padding: 1rem;
+  padding: 1rem 1.5rem;
   background-color: #f8f8f8;
   border-radius: 12px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 600px;
 }
 
 /* Input wrapper handles autocomplete positioning */
 .input-wrapper {
   position: relative;
   width: 100%;
-  max-width: 600px;
+  margin: 0 auto;
 }
 
 /* Taller text input area */
 .create-post-div textarea {
   width: 100%;
-  max-width: 600px;
-  min-height: 100px;
+  min-height: 120px;
   resize: vertical;
-  padding: 0.75rem 1rem;
+  padding: 1rem;
   border: 1px solid #ccc;
   border-radius: 10px;
-  font-size: 1rem;
+  font-size: 1.1rem;
   outline: none;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
   line-height: 1.5;
@@ -157,9 +158,9 @@
 /* Post button area */
 .post-btn-wrapper {
   width: 100%;
-  max-width: 600px;
   display: flex;
   justify-content: flex-end;
+  margin-top: 0.5rem;
 }
 
 .post-btn {
@@ -167,7 +168,7 @@
   color: white;
   border: none;
   border-radius: 8px;
-  padding: 0.6rem 1.25rem;
+  padding: 0.75rem 1.5rem;
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.2s ease, transform 0.1s ease;
@@ -178,14 +179,7 @@
   transform: scale(1.03);
 }
 
-/* Character section */
-.character-div p {
-  text-align: center;
-  padding: 1rem;
-  font-style: italic;
-  color: #555;
-}
-
+/* Character links in posts */
 .character-link {
   color: rgb(194, 50, 50);
   font-weight: 600;
@@ -197,22 +191,38 @@
   color: rgb(165, 40, 40);
 }
 
-/* Responsive adjustments */
+/* Character section */
+.character-div p {
+  text-align: center;
+  padding: 1rem;
+  font-style: italic;
+  color: #555;
+}
+
+/* Responsive adjustments for mobile */
 @media (max-width: 768px) {
-  .feed-ul {
-    max-width: 90%;
+  .feed-ul,
+  .create-post-div,
+  .post-btn-wrapper {
+    max-width: 95%;
   }
 
   .create-post-div textarea {
-    max-width: 90%;
+    font-size: 1.15rem;
+    min-height: 140px;
   }
 
   .post {
-    padding: 0.75rem 1rem;
+    padding: 1rem;
+  }
+
+  .post-footer-div {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .post-btn-wrapper {
     justify-content: center;
+    margin-top: 1rem;
   }
 }
-
