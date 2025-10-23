@@ -42,25 +42,25 @@ export function Feed() {
   const [selectedMove, setSelectedMove] = React.useState("");
   const [activeTag, setActiveTag] = React.useState({ postId: null, tag: null });
 
-  // 🎯 Action tag list (move names)
   const actionTags = [
-    "Back Air",
-    "Neutral Air",
-    "Up Air",
-    "Down Air",
-    "Forward Air",
-    "Neutral Special",
-    "Side Special",
-    "Up Special",
-    "Down Special",
-    "Grab",
-    "Dash Attack",
-    "Forward Smash",
-    "Up Smash",
-    "Down Smash",
+    "bair",
+    "nair",
+    "uair",
+    "dair",
+    "fair",
+    "nb",
+    "sb",
+    "ub",
+    "db",
+    "jab",
+    "fsmash",
+    "usmash",
+    "dsmash",
+    "ftilt",
+    "utilt",
+    "dtilt",
   ];
 
-  // 🔤 Aliases / shorthand normalization
   const tagAliases = {
     bair: "Back Air",
     nair: "Neutral Air",
@@ -74,8 +74,7 @@ export function Feed() {
     sb: "Side Special",
     ub: "Up Special",
     db: "Down Special",
-    grab: "Grab",
-    dash: "Dash Attack",
+    dashattack: "Dash Attack",
   };
 
   const handleInputChange = (e) => {
@@ -85,58 +84,124 @@ export function Feed() {
     const match = value.match(/\[([^\]]*)$/);
     if (match) {
       const query = match[1].toLowerCase();
-      const matches = Object.values(characters)
+
+      const characterMatches = Object.values(characters)
         .filter((c) => c.display_name.toLowerCase().startsWith(query))
         .map((c) => c.display_name);
-      setFilteredCharacters(matches);
+
+      const moveMatches = [
+        ...actionTags.filter((m) => m.toLowerCase().startsWith(query)),
+        ...Object.entries(tagAliases)
+          .filter(([key, alias]) => alias.toLowerCase().startsWith(query))
+          .map(([key, alias]) => alias),
+      ];
+
+      const combinedMatches = Array.from(new Set([...characterMatches, ...moveMatches]));
+
+      setFilteredCharacters(combinedMatches);
       setShowSuggestions(true);
     } else {
       setShowSuggestions(false);
     }
   };
 
-  const handleSelect = (character) => {
-    const newText = postText.replace(/\[([^\]]*)$/, `[${character}]`);
+
+  const handleSelect = (tag) => {
+    const newText = postText.replace(/\[([^\]]*)$/, `[${tag}]`);
     setPostText(newText);
     setShowSuggestions(false);
   };
 
-  const normalizeTag = (raw) => {
+  const normalizeTag = (raw, currentCharacter = null) => {
     const key = raw.toLowerCase().trim();
-    return tagAliases[key] || raw.trim();
+    
+    if (tagAliases[key]) {
+      const moveName = tagAliases[key];
+      return currentCharacter ? `${moveName} (${currentCharacter})` : moveName;
+    }
+  
+    const matchedCharacter = Object.values(characters).find(
+      (c) => c.display_name.toLowerCase() === key
+    );
+    if (matchedCharacter) {
+      return matchedCharacter.display_name;
+    }
+  
+    return raw.charAt(0).toUpperCase() + raw.slice(1).trim();
   };
+
 
   const handlePost = () => {
-    if (!postText.trim()) return;
+   if (!postText.trim()) return;
 
-    const tagMatches = [...postText.matchAll(/\[([^\]]+)\]/g)];
-    const parsedTags = tagMatches.map(match => normalizeTag(match[1]));
+   const tagMatches = [...postText.matchAll(/\[([^\]]+)\]/g)];
+   const parsedTags = [];
 
-    const newPost = {
-      id: posts.length + 1,
-      username: "Clay",
-      content: postText.trim(),
-      timestamp: new Date().toLocaleString(),
-      tags: parsedTags,
-    };
+   let currentCharacter = null;
 
-    setPosts([newPost, ...posts]);
-    setPostText("");
-    setShowSuggestions(false);
+   for (const match of tagMatches) {
+     const raw = match[1].trim();
+     const key = raw.toLowerCase();
+
+     const matchedCharacter = Object.values(characters).find(
+       (c) => c.display_name.toLowerCase() === key
+     );
+
+     if (matchedCharacter) {
+       currentCharacter = matchedCharacter.display_name;
+       parsedTags.push(currentCharacter);
+       continue;
+     }
+
+     if (tagAliases[key]) {
+       const display = tagAliases[key];
+       if (currentCharacter) {
+         parsedTags.push(`${currentCharacter} ${display}`);
+       } else {
+         parsedTags.push(display);
+       }
+       continue;
+     }
+
+     parsedTags.push(raw);
+   }
+
+   const newPost = {
+     id: posts.length + 1,
+     username: "Clay",
+     content: postText.trim(),
+     timestamp: new Date().toLocaleString(),
+     tags: parsedTags,
+   };
+
+   setPosts([newPost, ...posts]);
+   setPostText("");
+   setShowSuggestions(false);
   };
+
 
   function parsePostContent(content, postId) {
     const parts = [];
     const regex = /\[([^\]]+)\]/g;
     let lastIndex = 0;
     let match;
+    let currentCharacter = null;
 
     while ((match = regex.exec(content)) !== null) {
       if (match.index > lastIndex) {
         parts.push(content.slice(lastIndex, match.index));
       }
 
-      const normalized = normalizeTag(match[1]);
+      const rawTag = match[1].trim().toLowerCase();
+
+      const matchedCharacter = Object.values(characters).find(
+        (c) => c.display_name.toLowerCase() === rawTag
+      );
+      if (matchedCharacter) {
+        currentCharacter = matchedCharacter.display_name;
+      }
+
+      const normalized = normalizeTag(rawTag, currentCharacter);
 
       parts.push(
         <span
@@ -157,6 +222,7 @@ export function Feed() {
 
     return parts;
   }
+
 
   const visiblePosts = posts.filter(post => {
     const matchesCharacter = selectedCharacter
@@ -275,7 +341,8 @@ export function Feed() {
                     }}
                   >
                     <h4>{activeTag.tag}</h4>
-                    <p>Some stats or description here</p>
+                    <p>Startup: {}</p>
+                    <p>On Shield: {}</p>
                   </div>
                 )}
               </div>
