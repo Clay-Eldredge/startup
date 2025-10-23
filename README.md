@@ -100,7 +100,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
 - [x] **All functionality implemented or mocked out** - I mocked out posting and implemented functionality for filtering posts on the feed page. There's also the entire tags system, where if you start to type the name of a character it will give auto complete suggestions that you can click on. You start a tag with the '[' character.
-- [x] **Hooks** - I used a bunch of useState hooks in my feed.jsx to control pop ups when hovering over tags in posts. If you want to test, go to the feed page and then hover or click on any of the red words like 'Mario'. This will bring up a placeholder pop up that will contain data from an API if I can figure it out or just manually port over to my own database. 
+- [x] **Hooks** - I used a bunch of useState hooks in my feed.jsx to control pop ups when hovering over tags in posts. If you want to test, go to the feed page and then hover or click on any of the red words like 'Mario'. This will bring up a placeholder pop up that will contain data from an API if I can figure it out or just manually port over to my own database.  I also used useEffect for mock username functionality. It will autoset username to test_user and then show that in place of the profile text in the nav bar.
 
 ## 🚀 Service deliverable
 
