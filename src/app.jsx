@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 //import './app.css';
 import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
@@ -9,19 +9,27 @@ import { Profile } from './profile/profile';
 import { useLocalStorage } from './useLocalStorage';
 
 export default function App() {
-  const [username, setUsername] = useLocalStorage("username", "")
+  const [username, setUsername] = useLocalStorage("username", "");
+
+  // Automatically set username on first load
+  useEffect(() => {
+    if (!username) {
+      setUsername("test_username");
+    }
+  }, [username, setUsername]);
+
   return (
     <BrowserRouter>
       <header>
-            <div>
-                <img src="/Smash_Ball.png" ></img>
-                <NavLink className="logo" to="/">SmashTalk</NavLink>
-            </div>
-            <nav className="header">
-              <NavLink to="/feed">Feed</NavLink>
-              <NavLink to="/characters">Characters</NavLink>
-              <NavLink to="/profile"> {username ? username : "Profile"} </NavLink>
-            </nav>
+        <div>
+          <img src="/Smash_Ball.png" alt="Smash Ball" />
+          <NavLink className="logo" to="/">SmashTalk</NavLink>
+        </div>
+        <nav className="header">
+          <NavLink to="/feed">Feed</NavLink>
+          <NavLink to="/characters">Characters</NavLink>
+          <NavLink to="/profile">{username || "Profile"}</NavLink>
+        </nav>
       </header>
 
       <Routes>
@@ -41,5 +49,9 @@ export default function App() {
 }
 
 function NotFound() {
-  return <main className="container-fluid bg-secondary text-center">404: Return to sender. Address unknown.</main>;
+  return (
+    <main className="container-fluid bg-secondary text-center">
+      404: Return to sender. Address unknown.
+    </main>
+  );
 }
