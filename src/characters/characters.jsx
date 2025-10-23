@@ -8,11 +8,15 @@ export function Characters() {
     <main className="characters-page">
       <div className="character-grid">
         <ul className="character-list">
-          {characters.map((char) => (
-            <li key={char} className="character-list-item">
-              <Link className="character-list-button" to={`/feed/${char}`}>
-                <img src={`/Characters/Cards/${char}.png`} alt={char} className="character-img" />
-                <p>{char}</p>
+          {Object.entries(characters).map(([key, data]) => (
+            <li key={key} className="character-list-item">
+              <Link className="character-list-button" to={`/feed/${key}`}>
+                <img
+                  src={`/Characters/Cards/${data.icon_path}`}
+                  alt={data.display_name}
+                  className="character-img"
+                />
+                <p>{data.display_name}</p>
               </Link>
             </li>
           ))}

@@ -1,4 +1,3 @@
-/* Wrapper for the Characters page */
 .characters-page {
   background-color: #2d2d2d;
   color: #f0f0f0;
@@ -8,14 +7,12 @@
   justify-content: center;
 }
 
-/* Grid container */
 .characters-page .character-grid {
   display: flex;
   justify-content: center;
   width: 100%;
 }
 
-/* Grid of character cards */
 .characters-page .character-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
@@ -27,7 +24,6 @@
   margin: 0;
 }
 
-/* Individual character card */
 .characters-page .character-list-item {
   position: relative; 
   width: 100%;
@@ -46,7 +42,6 @@
   border-color: #666;
 }
 
-/* Link inside card */
 .characters-page .character-list-button {
   display: block;
   width: 100%;
@@ -56,7 +51,6 @@
   position: relative; 
 }
 
-/* Character image fills the card */
 .characters-page .character-img {
   width: 100%;
   height: 100%;
@@ -64,7 +58,6 @@
   display: block;
 }
 
-/* Character name overlay */
 .characters-page .character-list-button p {
   position: absolute;
   bottom: 0;

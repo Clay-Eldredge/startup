@@ -2,278 +2,208 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1.5rem;
-  background-color: #f8f8f8;
+  padding: 20px;
+  background: #fafafa;
 }
 
-/* The list itself */
+/* Feed list */
 .feed-ul {
   list-style: none;
   padding: 0;
   margin: 0;
   width: 100%;
   max-width: 600px;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
 }
 
-/* Each post “card” */
+/* Each post */
 .post {
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
-  padding: 1rem 1.25rem;
-  display: flex;
-  flex-direction: column;
-  transition: box-shadow 0.2s ease, transform 0.1s ease;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 20px;
 }
 
-.post:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  transform: translateY(-2px);
-}
-
-/* Username section */
+/* Username */
 .post-user-div {
   font-weight: bold;
-  color: rgb(194, 50, 50);
-  margin-bottom: 0.25rem;
+  color: #b22;
+  margin-bottom: 6px;
 }
 
-/* Post contents */
+/* Post text */
 .post-contents-div {
   font-size: 1rem;
-  color: #333;
-  line-height: 1.5;
-  margin-bottom: 0.75rem;
+  color: #222;
+  line-height: 1.4;
   white-space: pre-wrap;
   word-wrap: break-word;
-  overflow-wrap: anywhere;
 }
 
-/* Footer area: like button + like count */
+/* Footer area */
 .post-footer-div {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  gap: 0.75rem;
+  gap: 10px;
   border-top: 1px solid #eee;
-  padding-top: 0.5rem;
+  padding-top: 6px;
   font-size: 0.9rem;
-  color: #666;
+  color: #555;
 }
 
-/* Like button styling */
+/* Like button */
 .post-footer-div .btn {
-  background-color: rgb(194, 50, 50);
+  background: #b22;
   color: white;
   border: none;
-  border-radius: 6px;
-  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  padding: 5px 10px;
   cursor: pointer;
-  font-weight: 500;
-  transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
 .post-footer-div .btn:hover {
-  background-color: rgb(165, 40, 40);
-  transform: scale(1.02);
+  background: #922;
 }
 
-/* Post creation area */
+/* Create post box */
 .create-post-div {
-  margin: 2rem auto;
+  margin: 30px auto;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  text-align: center;
-  padding: 1rem 1.5rem;
-  background-color: #f8f8f8;
-  border-radius: 12px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  gap: 10px;
   width: 100%;
   max-width: 600px;
+  background: #f2f2f2;
+  padding: 15px;
+  border-radius: 8px;
 }
 
-/* Input wrapper handles autocomplete positioning */
+/* Input wrapper */
 .input-wrapper {
-  position: relative;
   width: 100%;
-  margin: 0 auto;
+  position: relative;
 }
 
-/* Taller text input area */
+/* Textarea */
 .create-post-div textarea {
   width: 100%;
-  min-height: 120px;
+  min-height: 100px;
   resize: vertical;
-  padding: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  font-size: 1.1rem;
+  padding: 10px;
+  border: 1px solid #bbb;
+  border-radius: 6px;
+  font-size: 1rem;
   outline: none;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-  line-height: 1.5;
 }
 
 .create-post-div textarea:focus {
-  border-color: rgb(194, 50, 50);
-  box-shadow: 0 0 0 3px rgba(194, 50, 50, 0.15);
+  border-color: #b22;
 }
 
-/* Autocomplete popup */
+/* Autocomplete */
 .autocomplete-box {
   position: absolute;
   top: 100%;
   left: 0;
   width: 100%;
   background: white;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  border: 1px solid #bbb;
+  border-radius: 6px;
   margin-top: 4px;
-  z-index: 1000;
-  max-height: 200px;
+  max-height: 180px;
   overflow-y: auto;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 10;
 }
 
 .suggestion-item {
-  padding: 8px 12px;
+  padding: 8px;
   cursor: pointer;
 }
 
 .suggestion-item:hover {
-  background-color: #f0f0f0;
+  background: #eee;
 }
 
-.no-results {
-  padding: 0.6rem 0.8rem;
-  color: #666;
-  font-style: italic;
-}
-
-/* Post button area */
+/* Post button */
 .post-btn-wrapper {
-  width: 100%;
   display: flex;
   justify-content: flex-end;
-  margin-top: 0.5rem;
 }
 
 .post-btn {
-  background-color: rgb(194, 50, 50);
+  background: #b22;
   color: white;
   border: none;
-  border-radius: 8px;
-  padding: 0.75rem 1.5rem;
-  font-weight: 600;
+  border-radius: 6px;
+  padding: 8px 14px;
   cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
 .post-btn:hover {
-  background-color: rgb(165, 40, 40);
-  transform: scale(1.03);
+  background: #922;
 }
 
-/* Character links in posts */
+/* Character link */
 .character-link {
-  color: rgb(194, 50, 50);
-  font-weight: 600;
+  color: #b22;
   text-decoration: none;
 }
 
 .character-link:hover {
   text-decoration: underline;
-  color: rgb(165, 40, 40);
 }
 
-/* Character section */
-.character-div p {
+/* Filter bar */
+.filter-bar {
   text-align: center;
-  padding: 1rem;
-  font-style: italic;
-  color: #555;
+  margin: 1rem auto;
+  color: #333;
 }
 
 .filter-bar label {
-  margin-right: 0.5rem;
   font-weight: bold;
-  color: #ddd;
-}
-
-.filter-bar {
-  margin: 1rem auto;
-  text-align: center;
-  color: #eee;
+  margin-right: 5px;
 }
 
 .filter-bar select {
-  padding: 0.4rem 0.8rem;
-  border-radius: 8px;
-  border: none;
-  background-color: #222;
-  color: #fff;
-  margin-left: 0.3rem;
+  padding: 5px 10px;
+  border-radius: 6px;
+  border: 1px solid #999;
+  background: white;
 }
 
+/* Tag hover */
 .tag-span {
-  color: rgb(194, 50, 50);
+  color: #b22;
   font-weight: 600;
   cursor: pointer;
-  position: relative;
-  transition: color 0.2s ease;
 }
 
-/* Slight color glow or underline when hovered */
-.tag-span.hovered {
-  color: #ff6b6b;
+.tag-span:hover {
+  color: #e55;
   text-decoration: underline;
 }
 
-/* Optional tooltip (using the title attribute, browser default) */
-
-/* OR you can make your own tooltip pop-up like this */
-.tag-span::after {
-  content: attr(data-tooltip);
-  position: absolute;
-  bottom: 125%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #333;
-  color: white;
-  padding: 0.4rem 0.6rem;
+/* Simple card tooltip */
+.tag-card {
+  background: white;
+  border: 1px solid #bbb;
   border-radius: 4px;
-  font-size: 0.8rem;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.2s ease;
-  white-space: nowrap;
+  padding: 4px 6px;
+  font-size: 0.9rem;
+  position: absolute;
+  z-index: 5;
 }
 
-.tag-span:hover::after {
-  opacity: 1;
-}
-
-
-/* Responsive adjustments for mobile */
+/* Mobile tweaks */
 @media (max-width: 768px) {
   .feed-ul,
-  .create-post-div,
-  .post-btn-wrapper {
+  .create-post-div {
     max-width: 95%;
   }
 
-  .create-post-div textarea {
-    font-size: 1.15rem;
-    min-height: 140px;
-  }
-
   .post {
-    padding: 1rem;
+    padding: 10px;
   }
 
   .post-footer-div {
@@ -283,6 +213,5 @@
 
   .post-btn-wrapper {
     justify-content: center;
-    margin-top: 1rem;
   }
 }

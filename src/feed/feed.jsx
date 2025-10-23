@@ -40,6 +40,7 @@ export function Feed() {
   const [filteredCharacters, setFilteredCharacters] = React.useState([]);
   const [selectedCharacter, setSelectedCharacter] = React.useState("");
   const [selectedMove, setSelectedMove] = React.useState("");
+  const [activeTag, setActiveTag] = React.useState({ postId: null, tag: null });
 
   // 🎯 Action tag list (move names)
   const actionTags = [
@@ -84,9 +85,9 @@ export function Feed() {
     const match = value.match(/\[([^\]]*)$/);
     if (match) {
       const query = match[1].toLowerCase();
-      const matches = characters.filter((c) =>
-        c.toLowerCase().startsWith(query)
-      );
+      const matches = Object.values(characters)
+        .filter((c) => c.display_name.toLowerCase().startsWith(query))
+        .map((c) => c.display_name);
       setFilteredCharacters(matches);
       setShowSuggestions(true);
     } else {
@@ -124,47 +125,38 @@ export function Feed() {
     setShowSuggestions(false);
   };
 
-  function parsePostContent(content) {
+  function parsePostContent(content, postId) {
     const parts = [];
     const regex = /\[([^\]]+)\]/g;
     let lastIndex = 0;
     let match;
-    
+
     while ((match = regex.exec(content)) !== null) {
       if (match.index > lastIndex) {
         parts.push(content.slice(lastIndex, match.index));
       }
-    
+
       const normalized = normalizeTag(match[1]);
-    
+
       parts.push(
         <span
           key={match.index}
           className="tag-span"
-          onMouseEnter={(e) => {
-            // Example hover action:
-            // show tooltip or highlight
-            e.currentTarget.classList.add("hovered");
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.classList.remove("hovered");
-          }}
-          title={`Tag: ${normalized}`} // optional tooltip text
+          onMouseEnter={() => setActiveTag({ postId, tag: normalized })}
         >
           {normalized}
         </span>
       );
-    
+
       lastIndex = regex.lastIndex;
     }
-  
+
     if (lastIndex < content.length) {
       parts.push(content.slice(lastIndex));
     }
-  
+
     return parts;
   }
-
 
   const visiblePosts = posts.filter(post => {
     const matchesCharacter = selectedCharacter
@@ -177,6 +169,8 @@ export function Feed() {
 
     return matchesCharacter && matchesMove;
   });
+
+  const allCharacters = Object.values(characters);
 
   return (
     <main>
@@ -195,8 +189,10 @@ export function Feed() {
           onChange={(e) => setSelectedCharacter(e.target.value)}
         >
           <option value="">All</option>
-          {characters.map((char) => (
-            <option key={char} value={char}>{char}</option>
+          {allCharacters.map((char) => (
+            <option key={char.display_name} value={char.display_name}>
+              {char.display_name}
+            </option>
           ))}
         </select>
 
@@ -210,7 +206,9 @@ export function Feed() {
         >
           <option value="">All</option>
           {actionTags.map((move) => (
-            <option key={move} value={move}>{move}</option>
+            <option key={move} value={move}>
+              {move}
+            </option>
           ))}
         </select>
       </div>
@@ -255,12 +253,31 @@ export function Feed() {
       <div className="feed-div">
         <ul className="feed-ul">
           {visiblePosts.map((post) => (
-            <li key={post.id} className="post">
+            <li
+              key={post.id}
+              className="post"
+              onMouseLeave={() => setActiveTag({ postId: null, tag: null })}
+            >
               <div className="post-user-div">
                 <p>{post.username}</p>
               </div>
               <div className="post-contents-div">
-                <p>{parsePostContent(post.content)}</p>
+                <p>{parsePostContent(post.content, post.id)}</p>
+
+                {activeTag.postId === post.id && activeTag.tag && (
+                  <div
+                    className="tag-card"
+                    style={{
+                      opacity: 1,
+                      transform: 'translateY(0)',
+                      transition: 'opacity 0.2s ease, transform 0.2s ease',
+                      pointerEvents: 'none',
+                    }}
+                  >
+                    <h4>{activeTag.tag}</h4>
+                    <p>Some stats or description here</p>
+                  </div>
+                )}
               </div>
               <div className="post-footer-div">
                 <button className="btn btn-primary">LIKE</button>
