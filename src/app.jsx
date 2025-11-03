@@ -6,17 +6,14 @@ import { Login } from './login/login';
 import { Feed } from './feed/feed';
 import { Characters } from './characters/characters';
 import { Profile } from './profile/profile';
+import { AuthState } from './login/authState';
 import { useLocalStorage } from './useLocalStorage';
 
 export default function App() {
-  const [username, setUsername] = useLocalStorage("username", "");
+  const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '');
+  const currentAuthState = userName ? AuthState.Authenticated : AuthState.Unauthenticated;
+  const [authState, setAuthState] = React.useState(currentAuthState); 
 
-  // Automatically set username on first load
-  useEffect(() => {
-    if (!username) {
-      setUsername("test_username");
-    }
-  }, [username, setUsername]);
 
   return (
     <BrowserRouter>
@@ -26,14 +23,27 @@ export default function App() {
           <NavLink className="logo" to="/">SmashTalk</NavLink>
         </div>
         <nav className="header">
-          <NavLink to="/feed">Feed</NavLink>
-          <NavLink to="/characters">Characters</NavLink>
-          <NavLink to="/profile">{username || "Profile"}</NavLink>
+          {authState === AuthState.Authenticated && (<NavLink to="/feed">Feed</NavLink>)}
+          {authState === AuthState.Authenticated && (<NavLink to="/characters">Characters</NavLink>)}
+          {authState === AuthState.Authenticated && (<NavLink to="/profile">Profile</NavLink>)}
         </nav>
       </header>
 
       <Routes>
-        <Route path='/' element={<Login />} exact />
+        <Route
+            path='/'
+            element={
+              <Login
+                userName={userName}
+                authState={authState}
+                onAuthChange={(userName, authState) => {
+                  setAuthState(authState);
+                  setUserName(userName);
+                }}
+              />
+            }
+            exact
+          />
         <Route path='/characters' element={<Characters />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='/feed' element={<Feed />} />

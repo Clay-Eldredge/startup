@@ -14,7 +14,10 @@ body {
 }
 
 main {
-  flex: 1; /* pushes footer down */
+    display: flex;
+    flex-direction: column; /* so children stack normally */
+    justify-content: center; /* vertical center */
+    align-items: center;     /* horizontal center */
 }
 
 header {
