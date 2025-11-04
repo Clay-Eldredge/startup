@@ -10,7 +10,7 @@ export function Characters() {
         <ul className="character-list">
           {Object.entries(characters).map(([key, data]) => (
             <li key={key} className="character-list-item">
-              <Link className="character-list-button" to={`/feed/${key}`}>
+              <Link className="character-list-button" to={`/feed?character=${key}`}>
                 <img
                   src={`/Characters/Cards/${data.icon_path}`}
                   alt={data.display_name}

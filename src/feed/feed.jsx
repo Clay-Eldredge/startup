@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './feed.css';
+import { useSearchParams } from "react-router-dom"
 import { characters } from '../characters/characterList.jsx';
 
 export function Feed() {
@@ -34,6 +35,8 @@ export function Feed() {
     },
   ];
 
+  const [searchParams] = useSearchParams()
+  const hasCharacterInURL = searchParams.has("character")
   const [posts, setPosts] = React.useState(initialPosts);
   const [postText, setPostText] = React.useState("");
   const [showSuggestions, setShowSuggestions] = React.useState(false);
@@ -114,69 +117,69 @@ export function Feed() {
 
   const normalizeTag = (raw, currentCharacter = null) => {
     const key = raw.toLowerCase().trim();
-    
+
     if (tagAliases[key]) {
       const moveName = tagAliases[key];
       return currentCharacter ? `${moveName} (${currentCharacter})` : moveName;
     }
-  
+
     const matchedCharacter = Object.values(characters).find(
       (c) => c.display_name.toLowerCase() === key
     );
     if (matchedCharacter) {
       return matchedCharacter.display_name;
     }
-  
+
     return raw.charAt(0).toUpperCase() + raw.slice(1).trim();
   };
 
 
   const handlePost = () => {
-   if (!postText.trim()) return;
+    if (!postText.trim()) return;
 
-   const tagMatches = [...postText.matchAll(/\[([^\]]+)\]/g)];
-   const parsedTags = [];
+    const tagMatches = [...postText.matchAll(/\[([^\]]+)\]/g)];
+    const parsedTags = [];
 
-   let currentCharacter = null;
+    let currentCharacter = null;
 
-   for (const match of tagMatches) {
-     const raw = match[1].trim();
-     const key = raw.toLowerCase();
+    for (const match of tagMatches) {
+      const raw = match[1].trim();
+      const key = raw.toLowerCase();
 
-     const matchedCharacter = Object.values(characters).find(
-       (c) => c.display_name.toLowerCase() === key
-     );
+      const matchedCharacter = Object.values(characters).find(
+        (c) => c.display_name.toLowerCase() === key
+      );
 
-     if (matchedCharacter) {
-       currentCharacter = matchedCharacter.display_name;
-       parsedTags.push(currentCharacter);
-       continue;
-     }
+      if (matchedCharacter) {
+        currentCharacter = matchedCharacter.display_name;
+        parsedTags.push(currentCharacter);
+        continue;
+      }
 
-     if (tagAliases[key]) {
-       const display = tagAliases[key];
-       if (currentCharacter) {
-         parsedTags.push(`${currentCharacter} ${display}`);
-       } else {
-         parsedTags.push(display);
-       }
-       continue;
-     }
+      if (tagAliases[key]) {
+        const display = tagAliases[key];
+        if (currentCharacter) {
+          parsedTags.push(`${currentCharacter} ${display}`);
+        } else {
+          parsedTags.push(display);
+        }
+        continue;
+      }
 
-     parsedTags.push(raw);
-   }
+      parsedTags.push(raw);
+    }
 
-   const newPost = {
-     id: posts.length + 1,
-     username: "Clay",
-     content: postText.trim(),
-     timestamp: new Date().toLocaleString(),
-     tags: parsedTags,
-   };
+    const newPost = {
+      id: posts.length + 1,
+      username: "Clay",
+      content: postText.trim(),
+      timestamp: new Date().toLocaleString(),
+      tags: parsedTags,
+    };
 
-   setPosts([newPost, ...posts]);
-   setPostText("");
-   setShowSuggestions(false);
+    setPosts([newPost, ...posts]);
+    setPostText("");
+    setShowSuggestions(false);
   };
 
 
@@ -226,11 +229,11 @@ export function Feed() {
 
   const visiblePosts = posts.filter(post => {
     const matchesCharacter = selectedCharacter
-      ? post.tags.includes(selectedCharacter)
+      ? post.tags.some(tag => tag.toLowerCase().includes(selectedCharacter.toLowerCase()))
       : true;
 
     const matchesMove = selectedMove
-      ? post.tags.includes(selectedMove)
+      ? post.tags.some(tag => tag.toLowerCase().includes(selectedMove.toLowerCase()))
       : true;
 
     return matchesCharacter && matchesMove;
@@ -238,46 +241,88 @@ export function Feed() {
 
   const allCharacters = Object.values(characters);
 
+  useEffect(() => {
+    const char = searchParams.get("character")
+    console.log("URL CHAR PARAM =", char)
+
+    if (char) {
+      const formatted =
+        char.charAt(0).toUpperCase() + char.slice(1).toLowerCase()
+      setSelectedCharacter(char)
+    }
+  }, [searchParams, setSelectedCharacter])
+
+  const [amiiboImg, setAmiiboImg] = React.useState("");
+
+  useEffect(() => {
+    if (!selectedCharacter) return;
+
+    async function loadAmiibo() {
+      try {
+        const amiiboUrl = 'https://www.amiiboapi.com/api/amiibo/'
+        const charKey = selectedCharacter.toLowerCase();
+        const amiiboName = characters[charKey].amiibo_name;
+        console.log(charKey)
+        const response = await fetch(`${amiiboUrl}?character=${amiiboName}`);
+        const data = await response.json();
+        console.log("amiibo:", data);
+        const amiibos = data.amiibo
+        const n = Math.floor(Math.random() * amiibos.length);
+        const selectedAmiibo = amiibos[n]
+        console.log(selectedAmiibo)
+        setAmiiboImg(selectedAmiibo.image)
+      } catch (err) {
+        console.error("Failed to fetch amiibo data:", err);
+      }
+    }
+
+    loadAmiibo();
+  }, [selectedCharacter]);
+
   return (
     <main>
-      <div className="character-div">
-        <img src="/Mario.png" alt="Mario" />
-        <p>
-          THIS IS WHERE THE TOURNAMENT DATA WILL BE DISPLAYED FOR THIS CHARACTER USING AN API
-        </p>
-      </div>
+      {hasCharacterInURL && (
+        <div className="character-div">
+          <h1>
+            {characters[selectedCharacter.toLowerCase()]?.display_name}
+          </h1>
+          <img src={amiiboImg} alt={selectedCharacter} />
+        </div>
+      )}
 
-      <div className="filter-bar">
-        <label htmlFor="characterFilter">Character:</label>
-        <select
-          id="characterFilter"
-          value={selectedCharacter}
-          onChange={(e) => setSelectedCharacter(e.target.value)}
-        >
-          <option value="">All</option>
-          {allCharacters.map((char) => (
-            <option key={char.display_name} value={char.display_name}>
-              {char.display_name}
-            </option>
-          ))}
-        </select>
+      {!hasCharacterInURL && (
+        <div className="filter-bar">
+          <label htmlFor="characterFilter">Character:</label>
+          <select
+            id="characterFilter"
+            value={selectedCharacter}
+            onChange={(e) => setSelectedCharacter(e.target.value)}
+          >
+            <option value="">All</option>
+            {allCharacters.map((char) => (
+              <option key={char.display_name} value={char.display_name}>
+                {char.display_name}
+              </option>
+            ))}
+          </select>
 
-        <label htmlFor="moveFilter" style={{ marginLeft: "1rem" }}>
-          Move:
-        </label>
-        <select
-          id="moveFilter"
-          value={selectedMove}
-          onChange={(e) => setSelectedMove(e.target.value)}
-        >
-          <option value="">All</option>
-          {actionTags.map((move) => (
-            <option key={move} value={move}>
-              {move}
-            </option>
-          ))}
-        </select>
-      </div>
+          <label htmlFor="moveFilter" style={{ marginLeft: "1rem" }}>
+            Move:
+          </label>
+          <select
+            id="moveFilter"
+            value={selectedMove}
+            onChange={(e) => setSelectedMove(e.target.value)}
+          >
+            <option value="">All</option>
+            {actionTags.map((move) => (
+              <option key={move} value={move}>
+                {move}
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
 
       <div className="create-post-div">
         <p>
@@ -341,8 +386,8 @@ export function Feed() {
                     }}
                   >
                     <h4>{activeTag.tag}</h4>
-                    <p>Startup: {}</p>
-                    <p>On Shield: {}</p>
+                    <p>Startup: { }</p>
+                    <p>On Shield: { }</p>
                   </div>
                 )}
               </div>

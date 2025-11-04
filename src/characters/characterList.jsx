@@ -4,6 +4,7 @@ export const characters = {
     "icon_path": "Mario.png",
     "font_color": "#ff0000ff",
     "frame_data_path": "https://ultimateframedata.com/hitboxes/mario/",
+    "amiibo_name": "mario",
     "alt_names": [],
     "moves": {
       "uair": {
@@ -77,6 +78,7 @@ export const characters = {
     "icon_path": "Donkey Kong.png",
     "font_color": "#AAAAAA",
     "frame_data_path": "/",
+    "amiibo_name": "donkey kong",
     "alt_names": [],
     "moves": {
       "uair": {
@@ -216,7 +218,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "link"
   },
   "samus": {
     "display_name": "Samus",
@@ -289,7 +292,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "samus"
   },
   "dark_samus": {
     "display_name": "Dark Samus",
@@ -362,7 +366,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "dark samus"
   },
   "yoshi": {
     "display_name": "Yoshi",
@@ -435,7 +440,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "yoshi"
   },
   "kirby": {
     "display_name": "Kirby",
@@ -508,7 +514,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "kirby"
   },
   "fox": {
     "display_name": "Fox",
@@ -581,7 +588,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "fox"
   },
   "pikachu": {
     "display_name": "Pikachu",
@@ -654,7 +662,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "pikachu"
   },
   "luigi": {
     "display_name": "Luigi",
@@ -727,7 +736,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "luigi"
   },
   "ness": {
     "display_name": "Ness",
@@ -800,7 +810,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "ness"
   },
   "captain_falcon": {
     "display_name": "Captain Falcon",
@@ -873,7 +884,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "captain falcon"
   },
   "jigglypuff": {
     "display_name": "Jigglypuff",
@@ -946,7 +958,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "jigglypuff"
   },
   "peach": {
     "display_name": "Peach",
@@ -1019,7 +1032,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "peach"
   },
   "daisy": {
     "display_name": "Daisy",
@@ -1092,7 +1106,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "daisy"
   },
   "bowser": {
     "display_name": "Bowser",
@@ -1165,7 +1180,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "bowser"
   },
   "ice_climbers": {
     "display_name": "Ice Climbers",
@@ -1238,7 +1254,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "ice climbers"
   },
   "sheik": {
     "display_name": "Sheik",
@@ -1311,7 +1328,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "zelda"
   },
   "zelda": {
     "display_name": "Zelda",
@@ -1384,7 +1402,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "zelda"
   },
   "dr_mario": {
     "display_name": "Dr Mario",
@@ -1457,7 +1476,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "mario"
   },
   "pichu": {
     "display_name": "Pichu",
@@ -1530,7 +1550,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "pichu"
   },
   "falco": {
     "display_name": "Falco",
@@ -1603,7 +1624,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "falco"
   },
   "marth": {
     "display_name": "Marth",
@@ -1676,7 +1698,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "marth"
   },
   "lucina": {
     "display_name": "Lucina",
@@ -1749,7 +1772,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "lucina"
   },
   "young_link": {
     "display_name": "Young Link",
@@ -1822,7 +1846,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "link"
   },
   "ganondorf": {
     "display_name": "Ganondorf",
@@ -1895,7 +1920,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "ganon"
   },
   "mewtwo": {
     "display_name": "Mewtwo",
@@ -1968,7 +1994,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "mewtwo"
   },
   "roy": {
     "display_name": "Roy",
@@ -2041,7 +2068,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "roy"
   },
   "chrom": {
     "display_name": "Chrom",
@@ -2114,7 +2142,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "chrom"
   },
   "mr_game_and_watch": {
     "display_name": "Mr Game & Watch",
@@ -2187,7 +2216,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "mr"
   },
   "meta_knight": {
     "display_name": "Meta Knight",
@@ -2260,7 +2290,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "meta knight"
   },
   "pit": {
     "display_name": "Pit",
@@ -2333,7 +2364,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "pit"
   },
   "dark_pit": {
     "display_name": "Dark Pit",
@@ -2406,7 +2438,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "dark pit"
   },
   "zero_suit_samus": {
     "display_name": "Zero Suit Samus",
@@ -2479,7 +2512,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "samus"
   },
   "wario": {
     "display_name": "Wario",
@@ -2552,7 +2586,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "wario"
   },
   "snake": {
     "display_name": "Snake",
@@ -2625,7 +2660,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "snake"
   },
   "ike": {
     "display_name": "Ike",
@@ -2698,7 +2734,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "ike"
   },
   "squirtle": {
     "display_name": "Squirtle",
@@ -2771,7 +2808,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "squirtle"
   },
   "ivysaur": {
     "display_name": "Ivysaur",
@@ -2844,7 +2882,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "ivysaur"
   },
   "charizard": {
     "display_name": "Charizard",
@@ -2917,7 +2956,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "charizard"
   },
   "diddy_kong": {
     "display_name": "Diddy Kong",
@@ -2990,7 +3030,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "diddy kong"
   },
   "lucas": {
     "display_name": "Lucas",
@@ -3063,7 +3104,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "lucas"
   },
   "sonic": {
     "display_name": "Sonic",
@@ -3136,7 +3178,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "sonic"
   },
   "king_dedede": {
     "display_name": "King Dedede",
@@ -3209,7 +3252,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "king dedede"
   },
   "olimar": {
     "display_name": "Olimar",
@@ -3282,7 +3326,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "olimar"
   },
   "lucario": {
     "display_name": "Lucario",
@@ -3355,7 +3400,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "lucario"
   },
   "rob": {
     "display_name": "ROB",
@@ -3428,7 +3474,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "rob"
   },
   "toon_link": {
     "display_name": "Toon Link",
@@ -3501,7 +3548,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "link"
   },
   "wolf": {
     "display_name": "Wolf",
@@ -3574,7 +3622,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "wolf"
   },
   "villager": {
     "display_name": "Villager",
@@ -3647,7 +3696,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "villager"
   },
   "mega_man": {
     "display_name": "Mega Man",
@@ -3720,7 +3770,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "mega man"
   },
   "wii_fit_trainer": {
     "display_name": "Wii Fit Trainer",
@@ -3793,7 +3844,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "wii fit trainer"
   },
   "rosalina_and_luma": {
     "display_name": "Rosalina & Luma",
@@ -3866,7 +3918,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "rosalina"
   },
   "little_mac": {
     "display_name": "Little Mac",
@@ -3939,7 +3992,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "little mac"
   },
   "greninja": {
     "display_name": "Greninja",
@@ -4012,7 +4066,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "greninja"
   },
   "mii_brawler": {
     "display_name": "Mii Brawler",
@@ -4085,7 +4140,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "mii"
   },
   "mii_swordfighter": {
     "display_name": "Mii Swordfighter",
@@ -4158,7 +4214,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "mii"
   },
   "mii_gunner": {
     "display_name": "Mii Gunner",
@@ -4231,7 +4288,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "mii"
   },
   "palutena": {
     "display_name": "Palutena",
@@ -4304,7 +4362,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "palutena"
   },
   "pac-man": {
     "display_name": "Pac-Man",
@@ -4377,7 +4436,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "pac-man"
   },
   "robin": {
     "display_name": "Robin",
@@ -4450,7 +4510,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "robin"
   },
   "shulk": {
     "display_name": "Shulk",
@@ -4523,7 +4584,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "shulk"
   },
   "bowser_jr": {
     "display_name": "Bowser Jr",
@@ -4596,7 +4658,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "bowser jr"
   },
   "duck_hunt": {
     "display_name": "Duck Hunt",
@@ -4669,7 +4732,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "duck hunt"
   },
   "ryu": {
     "display_name": "Ryu",
@@ -4742,7 +4806,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "ryu"
   },
   "ken": {
     "display_name": "Ken",
@@ -4815,7 +4880,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "ken"
   },
   "cloud": {
     "display_name": "Cloud",
@@ -4888,7 +4954,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "cloud"
   },
   "corrin": {
     "display_name": "Corrin",
@@ -4961,7 +5028,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "corrin"
   },
   "bayonetta": {
     "display_name": "Bayonetta",
@@ -5034,7 +5102,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "bayonetta"
   },
   "inkling": {
     "display_name": "Inkling",
@@ -5107,7 +5176,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "inkling"
   },
   "ridley": {
     "display_name": "Ridley",
@@ -5180,7 +5250,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "ridley"
   },
   "simon": {
     "display_name": "Simon",
@@ -5253,7 +5324,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "simon"
   },
   "richter": {
     "display_name": "Richter",
@@ -5326,7 +5398,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "richter"
   },
   "king_k_rool": {
     "display_name": "King K Rool",
@@ -5399,7 +5472,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "rool"
   },
   "isabelle": {
     "display_name": "Isabelle",
@@ -5472,7 +5546,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "isabelle"
   },
   "incineroar": {
     "display_name": "Incineroar",
@@ -5545,7 +5620,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "incineroar"
   },
   "piranha_plant": {
     "display_name": "Piranha Plant",
@@ -5618,7 +5694,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "piranha plant"
   },
   "joker": {
     "display_name": "Joker",
@@ -5691,7 +5768,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "joker"
   },
   "hero": {
     "display_name": "Hero",
@@ -5764,7 +5842,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "hero"
   },
   "banjo_and_kazooie": {
     "display_name": "Banjo & Kazooie",
@@ -5837,7 +5916,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "banjo"
   },
   "terry": {
     "display_name": "Terry",
@@ -5910,7 +5990,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "terry"
   },
   "byleth": {
     "display_name": "Byleth",
@@ -5983,7 +6064,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "byleth"
   },
   "min_min": {
     "display_name": "Min Min",
@@ -6056,7 +6138,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "min min"
   },
   "steve": {
     "display_name": "Steve",
@@ -6129,7 +6212,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "steve"
   },
   "sephiroth": {
     "display_name": "Sephiroth",
@@ -6202,7 +6286,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "sephiroth"
   },
   "pyra": {
     "display_name": "Pyra",
@@ -6275,7 +6360,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "pyra"
   },
   "mythra": {
     "display_name": "Mythra",
@@ -6348,7 +6434,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "mythra"
   },
   "kazuya": {
     "display_name": "Kazuya",
@@ -6421,7 +6508,8 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "kazuya"
   },
   "sora": {
     "display_name": "Sora",
@@ -6494,6 +6582,7 @@ export const characters = {
         "startup": 1,
         "on_shield": -1
       }
-    }
+    },
+    "amiibo_name": "sora"
   }
 };
