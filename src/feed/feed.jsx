@@ -4,40 +4,25 @@ import { useSearchParams } from "react-router-dom"
 import { characters } from '../characters/characterList.jsx';
 
 export function Feed() {
-  const initialPosts = [
-    {
-      id: 1,
-      username: "Clay",
-      content: "I hate playing against [Bayonetta]",
-      timestamp: "2025-10-06 09:30 AM",
-      tags: ["Bayonetta"],
-    },
-    {
-      id: 2,
-      username: "Clay's Mom",
-      content: "Clay, get off your phone.",
-      timestamp: "2025-10-06 09:31 AM",
-      tags: [],
-    },
-    {
-      id: 3,
-      username: "Clay",
-      content: "[Mario] can use [uair] to combo off the top blast zone.",
-      timestamp: "2025-10-06 09:31 AM",
-      tags: ["Mario", "Up Air"],
-    },
-    {
-      id: 4,
-      username: "Clay",
-      content: "[Mario] is at least a top 10 character.",
-      timestamp: "2025-10-06 09:31 AM",
-      tags: ["Mario"],
-    },
-  ];
+  const [posts, setPosts] = React.useState([]);
+
+  useEffect(() => {
+    async function fetchPosts() {
+      try {
+        const res = await fetch('/api/posts');
+        if (!res.ok) throw new Error('Failed to fetch posts');
+        const data = await res.json();
+        setPosts(data);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    fetchPosts();
+  }, []);
 
   const [searchParams] = useSearchParams()
   const hasCharacterInURL = searchParams.has("character")
-  const [posts, setPosts] = React.useState(initialPosts);
   const [postText, setPostText] = React.useState("");
   const [showSuggestions, setShowSuggestions] = React.useState(false);
   const [filteredCharacters, setFilteredCharacters] = React.useState([]);
@@ -134,7 +119,7 @@ export function Feed() {
   };
 
 
-  const handlePost = () => {
+  const handlePost = async () => {
     if (!postText.trim()) return;
 
     const tagMatches = [...postText.matchAll(/\[([^\]]+)\]/g)];
@@ -169,18 +154,26 @@ export function Feed() {
       parsedTags.push(raw);
     }
 
-    const newPost = {
-      id: posts.length + 1,
-      username: "Clay",
-      content: postText.trim(),
-      timestamp: new Date().toLocaleString(),
-      tags: parsedTags,
-    };
+    try {
+      const res = await fetch('/api/posts', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ content: postText.trim(), tags: parsedTags }),
+      });
 
-    setPosts([newPost, ...posts]);
-    setPostText("");
-    setShowSuggestions(false);
+      if (!res.ok) {
+        throw new Error('Failed to create post');
+      }
+
+      const newPost = await res.json();
+      setPosts([newPost, ...posts]);
+      setPostText("");
+      setShowSuggestions(false);
+    } catch (err) {
+      console.error(err);
+    }
   };
+
 
 
   function parsePostContent(content, postId) {

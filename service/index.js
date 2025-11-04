@@ -103,3 +103,39 @@ app.use((_req, res) => {
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
+
+
+
+// ENDPOINTS FOR POSTS
+
+let posts = [];
+
+apiRouter.get('/posts', (req, res) => {
+  res.send(posts);
+});
+
+// requires auth
+apiRouter.post('/posts', verifyAuth, (req, res) => {
+  const user = users.find(u => u.token === req.cookies[authCookieName]);
+  if (!user) {
+    return res.status(401).send({ msg: 'Unauthorized' });
+  }
+
+  const { content, tags } = req.body;
+
+  if (!content || !Array.isArray(tags)) {
+    return res.status(400).send({ msg: 'Invalid post format' });
+  }
+
+  const newPost = {
+    id: posts.length + 1,          
+    username: user.username,       
+    content: content,
+    tags: tags,
+    timestamp: new Date().toISOString(),
+  };
+
+  posts.push(newPost);
+
+  res.status(201).send(newPost);
+});
