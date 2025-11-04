@@ -106,12 +106,14 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Node.js/Express HTTP service** - I did not complete this part of the deliverable.
-- [ ] **Static middleware for frontend** - I did not complete this part of the deliverable.
-- [ ] **Calls to third party endpoints** - I did not complete this part of the deliverable.
-- [ ] **Backend service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Frontend calls service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Supports registration, login, logout, and restricted endpoint** - I did not complete this part of the deliverable.
+- [x] **Node.js/Express HTTP service** - Yes, I use express and node.js to run my backend
+- [x] **Static middleware for frontend** - Yes, I did this...
+- [x] **Calls to third party endpoints** - My feed page will now display a random amiibo for the selected character, but only if chosen through the character page. If you click search, it will be replaced with a filter drop down menu. I had to decide not to go with the tournament data api because it wasn't as easily available as I thought. You have to query by tournament. You can't even query by player, so I couldn't do anything like show the stats of the best player of each character or anything. Had to settle for this. Maybe in the future I'll do tournament results once we have mongo DB set up and I can pull tournament data and then run through it with my own code.
+- [x] **Backend service endpoints** - I created endpoints for getting and making posts.
+- [x] **Frontend calls service endpoints** - The frontend calls the backend to make and get posts.
+- [x] **Supports registration, login, logout, and restricted endpoint** - Yup, it absolutely does. I still need to route my pages better though, so when you click on the main logo it does something other than go back to the login page.
+
+The only thing I still need to do is make the profile page functionality, but it's just extra at this point. 
 
 
 ## 🚀 DB deliverable
