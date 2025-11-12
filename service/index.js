@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 const express = require('express');
 const uuid = require('uuid');
 const app = express();
+const DB = require('./database.js');
 
 let users = [];
 
@@ -38,6 +39,7 @@ apiRouter.post('/auth/login', async (req, res) => {
   if (user) {
     if (await bcrypt.compare(req.body.password, user.password)) {
       user.token = uuid.v4();
+      await DB.updateUser(user);
       setAuthCookie(res, user.token);
       res.send({ username: user.username });
       return;
@@ -51,6 +53,7 @@ apiRouter.delete('/auth/logout', async (req, res) => {
   const user = await findUser('token', req.cookies[authCookieName]);
   if (user) {
     delete user.token;
+    DB.updateUser(user);
   }
   res.clearCookie(authCookieName);
   res.status(204).end();
@@ -69,7 +72,10 @@ const verifyAuth = async (req, res, next) => {
 async function findUser(field, value) {
   if (!value) return null;
 
-  return users.find((u) => u[field] === value);
+  if (field === 'token') {
+    return DB.getUserByToken(value);
+  }
+  return DB.getUser(value);
 }
 
 async function createUser(username, password) {
@@ -80,7 +86,7 @@ async function createUser(username, password) {
     password: passwordHash,
     token: uuid.v4(),
   };
-  users.push(user);
+  await DB.addUser(user);
 
   return user;
 }
@@ -110,32 +116,32 @@ app.listen(port, () => {
 
 let posts = [];
 
-apiRouter.get('/posts', (req, res) => {
+apiRouter.get('/posts', async (req, res) => {
+  const posts = await DB.getPosts();
   res.send(posts);
 });
 
 // requires auth
-apiRouter.post('/posts', verifyAuth, (req, res) => {
-  const user = users.find(u => u.token === req.cookies[authCookieName]);
+apiRouter.post('/posts', verifyAuth, async (req, res) => {
+  const user = await DB.getUserByToken(req.cookies[authCookieName]);
   if (!user) {
     return res.status(401).send({ msg: 'Unauthorized' });
   }
 
   const { content, tags } = req.body;
-
   if (!content || !Array.isArray(tags)) {
     return res.status(400).send({ msg: 'Invalid post format' });
   }
 
   const newPost = {
-    id: posts.length + 1,          
-    username: user.username,       
-    content: content,
-    tags: tags,
+    id: posts.length + 1,
+    user: user,
+    username: user.username,
+    content,
+    tags,
     timestamp: new Date().toISOString(),
   };
 
-  posts.push(newPost);
-
+  DB.addPost(newPost)
   res.status(201).send(newPost);
 });
