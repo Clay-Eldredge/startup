@@ -41,7 +41,7 @@ export function Unauthenticated(props) {
             <legend>Login (this will use a database)</legend>
             <div>
               <label>Username</label>
-              <input type="text" value={userName} onChange={(e) => setUserName(e.target.value)} placeholder='your@email.com'></input>
+              <input type="text" value={userName} onChange={(e) => setUserName(e.target.value)} placeholder='username'></input>
             </div>
             <div>
               <label>Password</label>
