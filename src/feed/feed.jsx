@@ -9,7 +9,7 @@ export function Feed() {
   const socketRef = React.useRef(null);
 
   useEffect(() => {
-    console.log("🔥 Feed mounted — trying to connect WebSocket...");
+    console.log("Feed mounted — trying to connect WebSocket...");
     
     const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
     const host = window.location.hostname;
@@ -18,11 +18,11 @@ export function Feed() {
     socketRef.current = socket;
 
     socket.onopen = () => {
-      console.log("✅ WebSocket connected");
+      console.log("WebSocket connected");
     };
 
     socket.onerror = (e) => {
-      console.log("❌ WebSocket error", e);
+      console.log("WebSocket error", e);
     };
 
     socket.onmessage = (event) => {
@@ -71,7 +71,7 @@ export function Feed() {
     const character = characters[characterName];
     if (!character) return null;
 
-    // Find move key (uair, bair, etc) from alias name
+    // Find move key from alias name
     const moveKey = aliasToKey[moveName] || moveName;
 
     if (!moveKey || !moves[moveKey]) return null;
@@ -256,7 +256,6 @@ export function Feed() {
         continue;
       }
 
-      // Handle both: "fair" AND "forward air"
       const aliasEntry = Object.entries(tagAliases).find(
         ([abbr, full]) =>
           abbr === key || full.toLowerCase() === key

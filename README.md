@@ -127,8 +127,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Backend listens for WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **Frontend makes WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **Data sent over WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **WebSocket data displayed** - I did not complete this part of the deliverable.
-- [ ] **Application is fully functional** - I did not complete this part of the deliverable.
+- [x] **Backend listens for WebSocket connection** - Yes, it does.
+- [x] **Frontend makes WebSocket connection** - Wow, it does that too.
+- [x] **Data sent over WebSocket connection** - Yup, it does. It updates the posts in the feed immediately. You can test by having two windows open on the main feed, and sending a message from one. It will appear on the other without a refresh.
+- [x] **WebSocket data displayed** - It is displayed.
+- [x] **Application is fully functional** - Finally finished everything up! Did a minor rework to the pop ups that appear when you hover over the tags. It does a gif now instead of some empty data.
