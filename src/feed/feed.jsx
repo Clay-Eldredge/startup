@@ -18,12 +18,16 @@ export function Feed() {
     if (activeTag.tag.includes("(")) {
       const parts = activeTag.tag.split("(");
       moveName = parts[0].trim().toLowerCase();
-      characterName = parts[1].replace(")", "").trim().toLowerCase();
+      characterName = parts[1]
+        .replace(")", "")
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g, "_");
     }
     // Case: "Mario Back Air"
     else {
       const parts = activeTag.tag.split(" ");
-      characterName = parts[0].toLowerCase();
+      characterName = parts[0].toLowerCase().replace(/\s+/g, "_");
       moveName = parts.slice(1).join(" ").toLowerCase();
     }
 
@@ -45,13 +49,19 @@ export function Feed() {
     console.log("Move key:", moveKey);
     console.log("Move obj:", moves[moveKey]);
 
-    return `https://ultimateframedata.com/hitboxes/${folder}/${gifBase}${movePath}.gif`;
+    const url = `https://ultimateframedata.com/hitboxes/${folder}/${gifBase}${movePath}.gif`;
+    console.log("FINAL GIF URL:", url);
+    return url;
   }
 
   function getCharacterPngUrl(activeTag) {
     if (!activeTag?.tag) return null;
 
-    const name = activeTag.tag.trim().toLowerCase();
+    const name = activeTag.tag
+      .trim()
+      .toLowerCase()
+      .replace(/\s+/g, "_");
+
     const character = characters[name];
 
     if (!character) return null;
@@ -483,10 +493,6 @@ export function Feed() {
 
                   </div>
                 )}
-              </div>
-              <div className="post-footer-div">
-                <button className="btn btn-primary">LIKE</button>
-                <span>0 Likes</span>
               </div>
             </li>
           ))}

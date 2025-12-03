@@ -12,7 +12,7 @@ export const moves = {
       "path": "FAir"
     },
     "nair": {
-      "path": "FTilt"
+      "path": "NAir"
     },
     "ub": {
       "path": "FTilt"
