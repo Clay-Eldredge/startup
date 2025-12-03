@@ -2,9 +2,62 @@ import React, { useEffect } from 'react';
 import './feed.css';
 import { useSearchParams } from "react-router-dom"
 import { characters } from '../characters/characterList.jsx';
+import { moves } from '../characters/moves.jsx'
+
 
 export function Feed() {
   const [posts, setPosts] = React.useState([]);
+
+  function getMoveGifUrl(activeTag) {
+    if (!activeTag?.tag) return null;
+
+    // Examples of activeTag.tag:
+    // "Mario Back Air"
+    // "Up Air (Mario)"
+
+    let characterName = null;
+    let moveName = null;
+
+    // Case: "Up Air (Mario)"
+    if (activeTag.tag.includes("(")) {
+      const parts = activeTag.tag.split("(");
+      moveName = parts[0].trim().toLowerCase();
+      characterName = parts[1].replace(")", "").trim().toLowerCase();
+    }
+    // Case: "Mario Back Air"
+    else {
+      const parts = activeTag.tag.split(" ");
+      characterName = parts[0].toLowerCase();
+      moveName = parts.slice(1).join(" ").toLowerCase();
+    }
+
+    const character = characters[characterName];
+    if (!character) return null;
+
+    // Find move key (uair, bair, etc) from alias name
+    const moveKey = Object.entries(tagAliases).find(
+      ([key, alias]) => alias.toLowerCase() === moveName
+    )?.[0];
+
+    if (!moveKey || !moves[moveKey]) return null;
+
+    const folder = character.frame_data_path;         // dark_samus
+    const gifBase = character.hitbox_gif_name;        // DarkSamus
+    const movePath = moves[moveKey].path;             // UAir, FTilt, etc
+
+    return `https://ultimateframedata.com/hitboxes/${folder}/${gifBase}${movePath}.gif`;
+  }
+
+  function getCharacterPngUrl(activeTag) {
+    if (!activeTag?.tag) return null;
+
+    const name = activeTag.tag.trim().toLowerCase();
+    const character = characters[name];
+
+    if (!character) return null;
+
+    return `/Characters/Cards/${character.icon_path}`;
+  }
 
   useEffect(() => {
     async function fetchPosts() {
@@ -379,8 +432,29 @@ export function Feed() {
                     }}
                   >
                     <h4>{activeTag.tag}</h4>
-                    <p>Startup: { }</p>
-                    <p>On Shield: { }</p>
+
+                    {getMoveGifUrl(activeTag) ? (
+                      <img
+                        src={getMoveGifUrl(activeTag)}
+                        alt={activeTag.tag}
+                        style={{
+                          width: "200px",
+                          marginTop: "4px",
+                          borderRadius: "6px",
+                          border: "1px solid #aaa"
+                        }}
+                      />
+                    ) : getCharacterPngUrl(activeTag) ? (
+                      <img
+                        src={getCharacterPngUrl(activeTag)}
+                        alt={activeTag.tag}
+                        style={{
+                          width: "120px",
+                          marginTop: "8px"
+                        }}
+                      />
+                    ) : null}
+
                   </div>
                 )}
               </div>

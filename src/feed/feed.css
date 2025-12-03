@@ -194,6 +194,8 @@
   font-size: 0.9rem;
   position: absolute;
   z-index: 5;
+  min-width: 220px;
+  text-align: center;
 }
 
 /* Mobile tweaks */
