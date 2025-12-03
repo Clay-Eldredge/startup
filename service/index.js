@@ -5,6 +5,8 @@ const express = require('express');
 const uuid = require('uuid');
 const app = express();
 const DB = require('./database.js');
+const http = require('http');
+const WebSocket = require('ws');
 
 let users = [];
 
@@ -106,9 +108,28 @@ app.use((_req, res) => {
   res.sendFile('index.html', { root: 'public' });
 });
 
-app.listen(port, () => {
+const server = http.createServer(app);
+
+// WebSocket server
+const wss = new WebSocket.Server({ server });
+
+// Keep track of connections
+let sockets = [];
+
+wss.on('connection', (ws) => {
+  console.log('New WebSocket connection');
+  sockets.push(ws);
+
+  ws.on('close', () => {
+    console.log('WebSocket disconnected');
+    sockets = sockets.filter(s => s !== ws);
+  });
+});
+
+server.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
+
 
 
 
@@ -141,6 +162,17 @@ apiRouter.post('/posts', verifyAuth, async (req, res) => {
     timestamp: new Date().toISOString(),
   };
 
-  DB.addPost(newPost)
+  await DB.addPost(newPost);
+
+  sockets.forEach(ws => {
+    if (ws.readyState === WebSocket.OPEN) {
+      ws.send(JSON.stringify({
+        type: 'new-post',
+        post: newPost
+      }));
+    }
+  });
+
   res.status(201).send(newPost);
+
 });

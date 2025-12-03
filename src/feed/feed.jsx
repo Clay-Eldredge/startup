@@ -6,6 +6,43 @@ import { moves } from '../characters/moves.jsx'
 
 
 export function Feed() {
+  const socketRef = React.useRef(null);
+
+  useEffect(() => {
+    console.log("🔥 Feed mounted — trying to connect WebSocket...");
+    
+    const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
+    const host = window.location.hostname;
+    const socket = new WebSocket(`${protocol}://${host}:4000`);
+
+    socketRef.current = socket;
+
+    socket.onopen = () => {
+      console.log("✅ WebSocket connected");
+    };
+
+    socket.onerror = (e) => {
+      console.log("❌ WebSocket error", e);
+    };
+
+    socket.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+
+      if (data.type === 'new-post') {
+        setPosts(prev => [data.post, ...prev]);
+      }
+    };
+
+    socket.onclose = () => {
+      console.log('WebSocket disconnected');
+    };
+
+    return () => {
+      socket.close();
+    };
+  }, []);
+
+
   const [posts, setPosts] = React.useState([]);
 
   function getMoveGifUrl(activeTag) {
