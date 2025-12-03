@@ -11,10 +11,6 @@ export function Feed() {
   function getMoveGifUrl(activeTag) {
     if (!activeTag?.tag) return null;
 
-    // Examples of activeTag.tag:
-    // "Mario Back Air"
-    // "Up Air (Mario)"
-
     let characterName = null;
     let moveName = null;
 
@@ -35,15 +31,19 @@ export function Feed() {
     if (!character) return null;
 
     // Find move key (uair, bair, etc) from alias name
-    const moveKey = Object.entries(tagAliases).find(
-      ([key, alias]) => alias.toLowerCase() === moveName
-    )?.[0];
+    const moveKey = aliasToKey[moveName] || moveName;
 
     if (!moveKey || !moves[moveKey]) return null;
 
-    const folder = character.frame_data_path;         // dark_samus
-    const gifBase = character.hitbox_gif_name;        // DarkSamus
-    const movePath = moves[moveKey].path;             // UAir, FTilt, etc
+    const folder = character.frame_data_path;
+    const gifBase = character.hitbox_gif_name;
+    const movePath = moves[moveKey].path;
+
+    console.log("HOVER TAG:", activeTag.tag);
+    console.log("Parsed move:", moveName);
+    console.log("Parsed character:", characterName);
+    console.log("Move key:", moveKey);
+    console.log("Move obj:", moves[moveKey]);
 
     return `https://ultimateframedata.com/hitboxes/${folder}/${gifBase}${movePath}.gif`;
   }
@@ -65,6 +65,9 @@ export function Feed() {
         const res = await fetch('/api/posts');
         if (!res.ok) throw new Error('Failed to fetch posts');
         const data = await res.json();
+        const sortedData = data.sort(
+          (a, b) => new Date(b.timestamp) - new Date(a.timestamp)
+        );
         setPosts(data);
       } catch (err) {
         console.error(err);
@@ -153,14 +156,24 @@ export function Feed() {
     setShowSuggestions(false);
   };
 
+  const aliasToKey = Object.fromEntries(
+    Object.entries(tagAliases).map(([key, val]) => [val.toLowerCase(), key])
+  );
+
   const normalizeTag = (raw, currentCharacter = null) => {
     const key = raw.toLowerCase().trim();
 
-    if (tagAliases[key]) {
-      const moveName = tagAliases[key];
-      return currentCharacter ? `${moveName} (${currentCharacter})` : moveName;
+    // Handle alias or full name
+    const aliasEntry = Object.entries(tagAliases).find(
+      ([abbr, full]) => abbr === key || full.toLowerCase() === key
+    );
+
+    if (aliasEntry) {
+      const [abbr, full] = aliasEntry;
+      return currentCharacter ? `${full} (${currentCharacter})` : full;
     }
 
+    // Handle characters
     const matchedCharacter = Object.values(characters).find(
       (c) => c.display_name.toLowerCase() === key
     );
@@ -168,8 +181,10 @@ export function Feed() {
       return matchedCharacter.display_name;
     }
 
+    // Default fallback
     return raw.charAt(0).toUpperCase() + raw.slice(1).trim();
   };
+
 
 
   const handlePost = async () => {
@@ -194,15 +209,23 @@ export function Feed() {
         continue;
       }
 
-      if (tagAliases[key]) {
-        const display = tagAliases[key];
+      // Handle both: "fair" AND "forward air"
+      const aliasEntry = Object.entries(tagAliases).find(
+        ([abbr, full]) =>
+          abbr === key || full.toLowerCase() === key
+      );
+
+      if (aliasEntry) {
+        const [abbr, full] = aliasEntry;
+
         if (currentCharacter) {
-          parsedTags.push(`${currentCharacter} ${display}`);
+          parsedTags.push(`${full} (${currentCharacter})`);
         } else {
-          parsedTags.push(display);
+          parsedTags.push(full);
         }
         continue;
       }
+
 
       parsedTags.push(raw);
     }
@@ -417,6 +440,9 @@ export function Feed() {
             >
               <div className="post-user-div">
                 <p>{post.username}</p>
+                <span className="post-timestamp">
+                  {new Date(post.timestamp).toLocaleString()}
+                </span>
               </div>
               <div className="post-contents-div">
                 <p>{parsePostContent(post.content, post._id)}</p>

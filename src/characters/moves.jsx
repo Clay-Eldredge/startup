@@ -1,15 +1,15 @@
 export const moves = {
     "uair": {
-      "path": "UpAir"
+      "path": "UAir"
     },
     "bair": {
-      "path": "FTilt"
+      "path": "BAir"
     },
     "dair": {
-      "path": "FTilt"
+      "path": "DAir"
     },
     "fair": {
-      "path": "FTilt"
+      "path": "FAir"
     },
     "nair": {
       "path": "FTilt"
@@ -27,24 +27,24 @@ export const moves = {
       "path": "FTilt"
     },
     "fsmash": {
-      "path": "FTilt"
+      "path": "FSmash"
     },
     "dsmash": {
-      "path": "FTilt"
+      "path": "DSmash"
     },
     "usmash": {
-      "path": "FTilt"
+      "path": "USmash"
     },
     "ftilt": {
       "path": "FTilt"
     },
     "dtilt": {
-      "path": "FTilt"
+      "path": "DTilt"
     },
     "utilt": {
-      "path": "FTilt"
+      "path": "UTilt"
     },
     "jab": {
-      "path": "FTilt"
+      "path": "Jab1"
     }
 }

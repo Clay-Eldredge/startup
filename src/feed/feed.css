@@ -30,6 +30,9 @@
   font-weight: bold;
   color: #b22;
   margin-bottom: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;  
 }
 
 /* Post text */
@@ -196,6 +199,12 @@
   z-index: 5;
   min-width: 220px;
   text-align: center;
+}
+
+.post-timestamp {
+  font-size: 0.8rem;
+  color: #666;
+  margin-left: 0.5rem;
 }
 
 /* Mobile tweaks */
