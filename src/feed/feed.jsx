@@ -358,7 +358,7 @@ export function Feed() {
         <ul className="feed-ul">
           {visiblePosts.map((post) => (
             <li
-              key={post.id}
+              key={post._id}
               className="post"
               onMouseLeave={() => setActiveTag({ postId: null, tag: null })}
             >
@@ -366,9 +366,9 @@ export function Feed() {
                 <p>{post.username}</p>
               </div>
               <div className="post-contents-div">
-                <p>{parsePostContent(post.content, post.id)}</p>
+                <p>{parsePostContent(post.content, post._id)}</p>
 
-                {activeTag.postId === post.id && activeTag.tag && (
+                {activeTag.postId === post._id && activeTag.tag && (
                   <div
                     className="tag-card"
                     style={{

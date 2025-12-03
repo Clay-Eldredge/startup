@@ -134,7 +134,6 @@ apiRouter.post('/posts', verifyAuth, async (req, res) => {
   }
 
   const newPost = {
-    id: posts.length + 1,
     user: user,
     username: user.username,
     content,

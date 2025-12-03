@@ -26,6 +26,7 @@
     "react-bootstrap": "^2.10.10",
     "react-dom": "^19.1.1",
     "react-router-dom": "^7.9.3",
-    "vite": "^7.1.7"
+    "vite": "^7.1.7",
+    "ws": "^8.18.3"
   }
 }
