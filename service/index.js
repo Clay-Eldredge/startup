@@ -114,22 +114,9 @@ const wss = new WebSocket.Server({ server });
 // Keep track of connections
 let sockets = [];
 
-wss.on('connection', (ws) => {
-  console.log('New WebSocket connection');
-  sockets.push(ws);
-
-  ws.on('close', () => {
-    console.log('WebSocket disconnected');
-    sockets = sockets.filter(s => s !== ws);
-  });
-});
-
 server.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
-
-
-
 
 // ENDPOINTS FOR POSTS
 
@@ -173,4 +160,56 @@ apiRouter.post('/posts', verifyAuth, async (req, res) => {
 
   res.status(201).send(newPost);
 
+});
+
+// TRACK ONLINE USERS 
+
+let onlineUsers = new Set();
+
+function broadcastOnlineUsers() {
+  const message = JSON.stringify({
+    type: "online_users",
+    users: Array.from(onlineUsers),
+  });
+
+  sockets.forEach((ws) => {
+    if (ws.readyState === WebSocket.OPEN) {
+      ws.send(message);
+    }
+  });
+}
+
+wss.on('connection', async (ws, req) => {
+  console.log("WebSocket connection established");
+
+  sockets.push(ws);
+
+  const cookieHeader = req.headers.cookie || "";
+  const cookies = Object.fromEntries(
+    cookieHeader.split(";").map((c) => c.trim().split("="))
+  );
+
+  const token = cookies[authCookieName];
+
+  let user = null;
+  if (token) {
+    user = await DB.getUserByToken(token);
+  }
+
+  if (user) {
+    ws.username = user.username;
+    onlineUsers.add(user.username);
+    broadcastOnlineUsers();
+  }
+
+  ws.on("close", () => {
+    console.log("WebSocket disconnected");
+
+    sockets = sockets.filter((s) => s !== ws);
+
+    if (ws.username) {
+      onlineUsers.delete(ws.username);
+      broadcastOnlineUsers();
+    }
+  });
 });

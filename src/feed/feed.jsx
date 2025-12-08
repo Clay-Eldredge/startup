@@ -3,6 +3,7 @@ import './feed.css';
 import { useSearchParams } from "react-router-dom"
 import { characters } from '../characters/characterList.jsx';
 import { moves } from '../characters/moves.jsx'
+import OnlineUsers from './onlineusers.jsx';
 
 
 export function Feed() {
@@ -396,6 +397,8 @@ export function Feed() {
 
   return (
     <main>
+      <OnlineUsers />
+      
       {hasCharacterInURL && (
         <div className="character-div">
           <h1>
