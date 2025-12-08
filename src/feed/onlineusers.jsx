@@ -4,10 +4,10 @@ export default function OnlineUsers() {
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
-        const protocol = window.location.protocol === "https:" ? "wss" : "ws";
+        const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
         const host = window.location.hostname;
-
-        const socket = new WebSocket(`${protocol}://${host}:4000`);
+        const socketPort = host === 'localhost' ? 4000 : window.location.port;
+        const socket = new WebSocket(`${protocol}://${host}:${socketPort}/ws`);
 
         socket.onmessage = (event) => {
             const data = JSON.parse(event.data);

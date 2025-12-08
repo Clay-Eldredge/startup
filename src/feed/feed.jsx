@@ -14,7 +14,8 @@ export function Feed() {
     
     const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
     const host = window.location.hostname;
-    const socket = new WebSocket(`${protocol}://${host}:4000`);
+    const socketPort = host === 'localhost' ? 4000 : window.location.port;
+    const socket = new WebSocket(`${protocol}://${host}:${socketPort}/ws`);
 
     socketRef.current = socket;
 
